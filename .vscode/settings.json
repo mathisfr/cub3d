@@ -1,0 +1,14 @@
+{
+	"files.associations": {
+		"cub3d.h": "c",
+		"mlx42.h": "c",
+		"array": "c",
+		"iterator": "c",
+		"string": "c",
+		"string_view": "c",
+		"vector": "c",
+		"vector.h": "c",
+		"stdio.h": "c",
+		"ios": "c"
+	}
+}
