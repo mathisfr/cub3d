@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 16:09:48 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/13 16:10:14 by lloison          ###   ########.fr       */
+/*   Created: 2023/02/13 13:13:14 by lloison           #+#    #+#             */
+/*   Updated: 2023/02/13 17:35:52 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#ifndef PLAYER_H
+# define PLAYER_H
 
-# define WINDOW_WIDTH 2560
-# define WINDOW_HEIGHT 1280
+# include "vector.h"
+# include "map.h"
+
+typedef struct s_player
+{
+	t_pos		tile_pos;
+	int			angle;
+	t_vector	movement;
+}	t_player;
+
+t_player	*init_player(t_map *map);
 
 #endif
