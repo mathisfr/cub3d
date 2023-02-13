@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.h                                           :+:      :+:    :+:   */
+/*   main_template.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 13:13:14 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/13 16:16:20 by lloison          ###   ########.fr       */
+/*   Created: 2023/02/13 16:06:19 by lloison           #+#    #+#             */
+/*   Updated: 2023/02/13 16:19:11 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_H
-# define PLAYER_H
+#include "cub3d.h"
 
-# include "vector.h"
-# include "map.h"
-
-typedef struct s_player
+int	main(int argc, char **argv)
 {
-	t_pos	tile_pos;
-	int		angle;
-}	t_player;
+	t_data	*data;
+	mlx_t	*mlx;
 
-t_player	*init_player(t_map *map);
-
-#endif
+	if (argc != 2)
+	{
+		ft_printf_error("ERROR: Wrong argument count\n");
+		exit(11);
+	}
+	mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D", FALSE);
+	if (!mlx)
+		system_error("MLX ERROR");
+	data = init_data(mlx, argv[1]);
+	//do all mlx stuff
+	free_data(data);
+	return (0);
+}

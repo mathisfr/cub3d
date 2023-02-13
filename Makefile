@@ -7,6 +7,12 @@ LIBFT = libft/libft_enhanced.a
 HEADERS	:= -I ./include -I $(LIBMLX)/include
 
 SOURCES = 	main.c \
+			data.c \
+			player.c \
+			map_parser.c \
+			map_parser_utils.c \
+			check_map.c \
+			error.c \
 			
 
 SOURCES_BONUS = 
