@@ -10,6 +10,7 @@ SOURCES = 	main.c \
 			pixels/ft_pixel_put.c \
 			pixels/ft_rectangle.c \
 			pixels/ft_circle.c \
+			pixels/ft_line.c\
 			pixels/ft_draw_map.c \
 			parsing/data.c \
 			parsing/map_parser.c \
@@ -20,6 +21,7 @@ SOURCES = 	main.c \
 			player/player.c \
 			player/player_collider.c \
 			player/player_collider2.c \
+			player/ft_movement.c \
 
 
 SOURCES_BONUS =

@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:14:38 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/14 16:42:31 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/14 17:48:15 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 # include <fcntl.h>
 # include <math.h>
 # include "MLX42/MLX42.h"
@@ -31,6 +32,10 @@ void	ft_pixel_put(mlx_image_t *image,
 void	ft_rectangle(int x, int y, int sx, int sy, uint32_t color, mlx_image_t *image);
 void	ft_draw_map(t_map *map, int color, mlx_image_t* img);
 void	circleBres(int xc, int yc, int r, uint32_t color, mlx_image_t *image);
+void	ft_line(mlx_image_t *img, int begin_x, int begin_y, int end_x, int end_y, uint32_t color);
+
+// player
+void	ft_movement(t_data *data);
 
 /* - - - - - error.c - - - - - */
 void			parsing_error(char *message);
