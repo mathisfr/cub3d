@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:37:59 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/14 16:49:01 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/14 18:38:08 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void	update_player_collider(t_player *player, t_map *map,
 {
 	t_list	*tile_list;
 
-	if (!force_update && player->movement.x == 0 && player->movement.y == 0)
-		return ;
+	(void) force_update;
 	player->collider.all_tiles = get_all_tiles(player);
 	//opti : check if all_tiles and output of all_tiles differ
 	player->collider.max.x = 0;
@@ -43,7 +42,7 @@ static t_bool	has_vertical_collision(t_player *player)
 {
 	float	final_pos_y;
 
-	final_pos_y = player->map_pos.y + player->movement.y * PLAYER_SPEED;
+	final_pos_y = player->map_pos.y + player->movement.y;
 	if (final_pos_y > player->collider.max.y
 		|| final_pos_y < player->collider.min.y)
 		return (TRUE);
@@ -54,7 +53,7 @@ static t_bool	has_horizontal_collision(t_player *player)
 {
 	float	final_pos_x;
 
-	final_pos_x = player->map_pos.x + player->movement.x * PLAYER_SPEED;
+	final_pos_x = player->map_pos.x + player->movement.x;
 	if (final_pos_x > player->collider.max.x
 		|| final_pos_x < player->collider.min.x)
 		return (TRUE);
@@ -63,7 +62,7 @@ static t_bool	has_horizontal_collision(t_player *player)
 
 void	handle_player_collision(t_player *player)
 {
-	//printf("max.x : %f max.y : %f\nmin.x : %f min.y : %f\n", player->collider.max.x, player->collider.max.y, player->collider.min.x, player->collider.min.y);
+	printf("max.x : %f max.y : %f\nmin.x : %f min.y : %f\n\n", player->collider.max.x, player->collider.max.y, player->collider.min.x, player->collider.min.y);
 	if (player->movement.y != 0)
 	{
 		if (has_vertical_collision(player))
