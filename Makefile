@@ -12,11 +12,14 @@ SOURCES = 	main.c \
 			pixels/ft_circle.c \
 			pixels/ft_draw_map.c \
 			parsing/data.c \
-			parsing/player.c \
 			parsing/map_parser.c \
 			parsing/map_parser_utils.c \
 			parsing/check_map.c \
 			parsing/error.c \
+			vector.c \
+			player/player.c \
+			player/player_collider.c \
+			player/player_collider2.c \
 
 
 SOURCES_BONUS =

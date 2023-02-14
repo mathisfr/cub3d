@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:14:38 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/13 17:03:47 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:42:31 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <math.h>
 # include "MLX42/MLX42.h"
 
 // pixels
@@ -35,4 +36,5 @@ void	circleBres(int xc, int yc, int r, uint32_t color, mlx_image_t *image);
 void			parsing_error(char *message);
 void			system_error(char *prompt);
 void			malloc_error(void);
+
 #endif

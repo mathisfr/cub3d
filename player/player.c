@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:56:10 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/13 16:18:44 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/14 17:05:48 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,16 @@ t_player	*init_player(t_map *map)
 	else if (map->map_arr[(int)player->tile_pos.y]
 		[(int)player->tile_pos.x] == 'W')
 		player->angle = 270;
+	update_player_collider(player, map, TRUE);
 	return (player);
+}
+
+void	update_player(t_player *player, t_pos instance_pos, t_map *map)
+{
+	player->map_pos.x = instance_pos.x + WALL_SIZE / 2;
+	player->map_pos.y = instance_pos.y + WALL_SIZE / 2;
+	player->tile_pos = map_pos_to_tile_pos(player->map_pos);
+	update_player_collider(player, map, FALSE);
+	handle_player_collision(player);
+	//player->movement = normalize_vector(player->movement);
 }

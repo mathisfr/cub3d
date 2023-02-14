@@ -8,23 +8,31 @@
 #include <memory.h>
 #include "cub3d.h"
 
+void	handle_collisions(t_data *data);
+
 static mlx_image_t* img;
 static mlx_image_t* player;
 
 void hook(void* param)
 {
-	mlx_t* mlx = param;
+	t_data* data = param;
 
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
-	if (mlx_is_key_down(mlx, MLX_KEY_UP))
-		player->instances[0].y -= 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
-		player->instances[0].y += 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		player->instances[0].x -= 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		player->instances[0].x += 5;
+	data->player->movement.x = 0;
+	data->player->movement.y = 0;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(data->mlx);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_UP))
+		data->player->movement.y -= 1;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN))
+		data->player->movement.y += 1;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+		data->player->movement.x -= 1;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+		data->player->movement.x += 1;
+	update_player(data->player,
+		pos(player->instances[0].x, player->instances[0].y), data->map);
+	player->instances[0].x += data->player->movement.x * PLAYER_SPEED;
+	player->instances[0].y += data->player->movement.y * PLAYER_SPEED;
 }
 
 int32_t	main(int argc, char **argv)
@@ -51,7 +59,7 @@ int32_t	main(int argc, char **argv)
 	ft_draw_map(data->map, 0xFF00FF00, img);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_image_to_window(mlx, player, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
-	mlx_loop_hook(mlx, &hook, mlx);
+	mlx_loop_hook(mlx, &hook, data);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
