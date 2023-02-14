@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:13:14 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/13 17:35:52 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:22:42 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_player
 {
 	t_pos		tile_pos;
 	int			angle;
+	t_vector	dir;
 	t_vector	movement;
 }	t_player;
 
