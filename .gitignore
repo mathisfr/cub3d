@@ -1,3 +1,6 @@
 .vscode
 **/*.o
 *.o
+**/*.a
+*.a
+Cub3d
