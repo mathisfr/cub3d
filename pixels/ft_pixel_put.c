@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:13:48 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/13 16:57:41 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:10:59 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_pixel_put(mlx_image_t *image, uint32_t x, uint32_t y, uint32_t color)
 
 	bpp = sizeof(int32_t);
 	dst = NULL;
-	if ((x >= 0 && x < WINDOW_WIDTH) || (y >= 0 && y < WINDOW_HEIGHT))
+	if (x >= 0 && (x < WINDOW_WIDTH && x < image->width)
+		&& (y >= 0 && (y < WINDOW_HEIGHT && y < image->height)))
 		dst = image->pixels + ((((y) * image->width * bpp) + (x * bpp)));
 	if (dst)
 		*(uint32_t *)dst = color;
