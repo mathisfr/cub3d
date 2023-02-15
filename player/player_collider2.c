@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:37:59 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/14 18:38:08 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:28:39 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,21 @@ static t_bool	has_vertical_collision(t_player *player)
 	final_pos_y = player->map_pos.y + player->movement.y;
 	if (final_pos_y > player->collider.max.y
 		|| final_pos_y < player->collider.min.y)
+	{
+		if (player->movement.y < 0
+			&& player->map_pos.y != player->collider.min.y)
+		{
+			player->movement.y = player->collider.min.y - player->map_pos.y;
+			return (FALSE);
+		}
+		if (player->movement.y > 0
+			&& player->map_pos.y != player->collider.max.y)
+		{
+			player->movement.y = player->collider.max.y - player->map_pos.y;
+			return (FALSE);
+		}
 		return (TRUE);
+	}
 	return (FALSE);
 }
 
@@ -56,7 +70,21 @@ static t_bool	has_horizontal_collision(t_player *player)
 	final_pos_x = player->map_pos.x + player->movement.x;
 	if (final_pos_x > player->collider.max.x
 		|| final_pos_x < player->collider.min.x)
+	{
+		if (player->movement.x < 0
+			&& player->map_pos.x != player->collider.min.x)
+		{
+			player->movement.x = player->collider.min.x - player->map_pos.x;
+			return (FALSE);
+		}
+		if (player->movement.x > 0
+			&& player->map_pos.x != player->collider.max.x)
+		{
+			player->movement.x = player->collider.max.x - player->map_pos.x;
+			return (FALSE);
+		}
 		return (TRUE);
+	}
 	return (FALSE);
 }
 

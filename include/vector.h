@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:14:01 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/14 17:49:55 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:06:22 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ t_pos	tile_pos_to_map_pos(t_pos tile_pos);
 t_pos	map_pos_to_tile_pos(t_pos map_pos);
 t_pos	pos(float x, float y);
 t_pos	*ptr_pos(float x, float y);
-t_pos	normalize_vector(t_pos v);
+t_vector	normalize_vector(t_vector v);
 
 #endif

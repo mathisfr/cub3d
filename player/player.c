@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:56:10 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/14 18:17:22 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:19:55 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,4 @@ void	update_player(t_player *player, t_pos instance_pos, t_map *map)
 	printf("player map pos : %fx%fy\n", player->map_pos.x, player->map_pos.y);
 	update_player_collider(player, map, FALSE);
 	handle_player_collision(player);
-	//player->movement = normalize_vector(player->movement);
 }

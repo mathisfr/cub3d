@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:02:14 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/14 17:55:56 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:19:16 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	ft_vector_rotation(t_vector *vec, int *angle)
 	vec->y = new_vec.y;
 }
 
-static void	set_rotation(t_data *data, int *angle_save)
+static void	move_and_rotate(t_data *data, int *angle_save)
 {
-	data->img->instances[0].y += data->player->movement.y;
-	data->img->instances[0].x += data->player->movement.x;
+	data->img->instances[0].y += truncf(data->player->movement.y);
+	data->img->instances[0].x += truncf(data->player->movement.x);
 	data->vec_dir->instances[0].y = data->img->instances[0].y;
 	data->vec_dir->instances[0].x = data->img->instances[0].x;
 	data->player->dir.x = data->player->movement.x * ((VEC_DIR / 2) / MOVE_SPEED);
@@ -44,6 +44,25 @@ static void	set_rotation(t_data *data, int *angle_save)
 	}
 }
 
+static void	get_movement_input(t_data *data)
+{
+	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
+		data->player->movement.y = -1;
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_S))
+		data->player->movement.y = 1;
+	else
+		data->player->movement.y = 0;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
+		data->player->movement.x = -1;
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_D))
+		data->player->movement.x = 1;
+	else
+		data->player->movement.x = 0;
+	data->player->movement = normalize_vector(data->player->movement);
+	data->player->movement.x *= PLAYER_SPEED;
+	data->player->movement.y *= PLAYER_SPEED;
+}
+
 void	ft_movement(t_data *data)
 {
 	int			angle_save;
@@ -52,18 +71,7 @@ void	ft_movement(t_data *data)
 	angle_save = data->player->angle;
 	move_save.x = data->player->movement.x;
 	move_save.y = data->player->movement.y;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-		data->player->movement.y = -MOVE_SPEED;
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_S))
-		data->player->movement.y = MOVE_SPEED;
-	else
-		data->player->movement.y = 0;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-		data->player->movement.x = -MOVE_SPEED;
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-		data->player->movement.x = MOVE_SPEED;
-	else
-		data->player->movement.x = 0;
+	get_movement_input(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 		data->player->angle += -ROTATE_SPEED;
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
@@ -71,5 +79,5 @@ void	ft_movement(t_data *data)
 	ft_vector_rotation(&data->player->movement, &data->player->angle);
 	update_player(data->player,
 		pos(data->img->instances[0].x, data->img->instances[0].y), data->map);
-	set_rotation(data, &angle_save);
+	move_and_rotate(data, &angle_save);
 }
