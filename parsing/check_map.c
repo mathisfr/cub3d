@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:27:33 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/13 15:47:18 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:41:39 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,35 @@ static void	check_spaces(t_map *map)
 	}
 }
 
+static void	check_player(t_map *map)
+{
+	int	x;
+	int	y;
+	int	count;
+
+	y = 0;
+	count = 0;
+	while (y < map->max_y_size)
+	{
+		x = 0;
+		while (x < map->max_x_size)
+		{
+			if (map->map_arr[y][x] == 'N' || map->map_arr[y][x] == 'S'
+				|| map->map_arr[y][x] == 'E' || map->map_arr[y][x] == 'W')
+				count++;
+			x++;
+		}
+		y++;
+	}
+	if (count == 0)
+		parsing_error("No player found in map");
+	if (count > 1)
+		parsing_error("Too many player symbol found in map");
+}
+
 void	check_map(t_map *map)
 {
 	check_borders(map);
 	check_spaces(map);
+	check_player(map);
 }
