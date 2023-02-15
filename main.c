@@ -18,7 +18,7 @@ void hook(void* param)
 	ft_movement(data);
 	t_vector v;
 	v.x = -1;
-	v.y = 1;
+	v.y = -1;
 	//v = normalize_vector(v);
 	ft_memset(data->line->pixels, 1, data->line->width * data->line->height * sizeof(int32_t));
 	draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
