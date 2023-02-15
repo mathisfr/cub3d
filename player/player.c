@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:56:10 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/14 18:17:22 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:11:12 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ t_player	*init_player(t_map *map)
 
 void	update_player(t_player *player, t_pos instance_pos, t_map *map)
 {
-	player->map_pos.x = instance_pos.x + WALL_SIZE / 2;
-	player->map_pos.y = instance_pos.y + WALL_SIZE / 2;
+	player->map_pos.x = instance_pos.x + PL_HITBOX;
+	player->map_pos.y = instance_pos.y + PL_HITBOX;
 	player->tile_pos = map_pos_to_tile_pos(player->map_pos);
 	printf("player map pos : %fx%fy\n", player->map_pos.x, player->map_pos.y);
 	update_player_collider(player, map, FALSE);

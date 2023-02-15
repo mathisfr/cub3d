@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:18:11 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/14 14:25:27 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:42:48 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,4 @@ void	ft_line(mlx_image_t *img, int begin_x, int begin_y, int end_x, int end_y, u
 		--pixels;
 	}
 }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_movement.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:02:14 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/14 17:55:56 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/15 17:27:24 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,21 @@ static void	set_rotation(t_data *data, int *angle_save)
 	data->img->instances[0].x += data->player->movement.x;
 	data->vec_dir->instances[0].y = data->img->instances[0].y;
 	data->vec_dir->instances[0].x = data->img->instances[0].x;
-	data->player->dir.x = data->player->movement.x * ((VEC_DIR / 2) / MOVE_SPEED);
-	data->player->dir.y = data->player->movement.y * ((VEC_DIR / 2) / MOVE_SPEED);
+	data->player->dir.x = data->player->movement.x * ((VEC_LEN / 2) / MOVE_SPEED);
+	data->player->dir.y = data->player->movement.y * ((VEC_LEN / 2) / MOVE_SPEED);
 	if (*angle_save != data->player->angle)
 	{
 		ft_memset(data->vec_dir->pixels, 1,
 			data->vec_dir->width * data->vec_dir->height * sizeof(int32_t));
-		ft_line(data->vec_dir, VEC_DIR / 2, VEC_DIR / 2, (VEC_DIR / 2) + data->player->dir.x, (VEC_DIR / 2) + data->player->dir.y, 0xFF0000FF);
+		ft_line(data->vec_dir, VEC_LEN / 2, VEC_LEN / 2, (VEC_LEN / 2) + data->player->dir.x, (VEC_LEN / 2) + data->player->dir.y, 0xFF0000FF);
 	}
 }
 
 void	ft_movement(t_data *data)
 {
 	int			angle_save;
-	t_vector	move_save;
 
 	angle_save = data->player->angle;
-	move_save.x = data->player->movement.x;
-	move_save.y = data->player->movement.y;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 		data->player->movement.y = -MOVE_SPEED;
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_S))

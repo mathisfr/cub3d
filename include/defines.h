@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:09:48 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/14 18:22:58 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:10:24 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define WINDOW_HEIGHT 1280
 
 # define WALL_SIZE 50
-# define VEC_DIR 50
+# define VEC_LEN 20
 
 # define MOVE_SPEED 4
 # define ROTATE_SPEED 8
