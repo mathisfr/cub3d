@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:37:59 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/15 14:28:39 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/15 18:25:31 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static t_bool	has_horizontal_collision(t_player *player)
 
 void	handle_player_collision(t_player *player)
 {
-	printf("max.x : %f max.y : %f\nmin.x : %f min.y : %f\n\n", player->collider.max.x, player->collider.max.y, player->collider.min.x, player->collider.min.y);
+	//printf("max.x : %f max.y : %f\nmin.x : %f min.y : %f\n\n", player->collider.max.x, player->collider.max.y, player->collider.min.x, player->collider.min.y);
 	if (player->movement.y != 0)
 	{
 		if (has_vertical_collision(player))
