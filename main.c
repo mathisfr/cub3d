@@ -16,6 +16,24 @@ void hook(void* param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
 	ft_movement(data);
+	t_vector v;
+	v.x = -1;
+	v.y = 1;
+	//v = normalize_vector(v);
+	ft_memset(data->line->pixels, 1, data->line->width * data->line->height * sizeof(int32_t));
+	draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+	v.x = +1;
+	v.y = +1;
+	//v = normalize_vector(v);
+	//draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+	v.x = +1;
+	v.y = -1;
+	//v = normalize_vector(v);
+	//draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+	v.x = -1;
+	v.y = 1;
+	//v = normalize_vector(v);
+	//draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
 }
 
 int32_t	main(int argc, char **argv)
@@ -52,6 +70,9 @@ int32_t	main(int argc, char **argv)
 	mlx_image_to_window(mlx, map_img, 0, 0);
 	mlx_image_to_window(mlx, player, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
 	mlx_image_to_window(mlx, vector_dir, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
+	mlx_image_t *line = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx_image_to_window(mlx, line, 0, 0);
+	data->line = line;
 	mlx_loop_hook(mlx, &hook, data);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);

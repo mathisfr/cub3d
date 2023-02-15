@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:18:11 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/15 16:42:48 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:50:10 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,68 @@ void	ft_line(mlx_image_t *img, int begin_x, int begin_y, int end_x, int end_y, u
 	}
 }
 
+void	draw_ray(t_data *data, t_map *map, t_pos map_pos, t_pos tile_pos, t_vector dir)
+{
+	float deltaDistX = (dir.x == 0) ? MAXFLOAT : abs((int)(1 / dir.x));
+    float deltaDistY = (dir.y == 0) ? MAXFLOAT : abs((int)(1 / dir.y));
+    int stepX;
+    int stepY;
+	float sideDistX = 0;
+	float sideDistY = 0;
+	int side;
+
+	if(dir.x < 0)
+    {
+      stepX = -1;
+	  sideDistX = 0 * deltaDistX;
+    }
+    else
+    {
+      stepX = 1;
+	  sideDistX = 1.0 * deltaDistX;
+    }
+    if(dir.y < 0)
+    {
+      stepY = -1;
+	  sideDistY = 0 * deltaDistY;
+    }
+    else
+    {
+      stepY = 1;
+	  sideDistY = 1.0 * deltaDistY;
+    }
+
+	while (1)
+	{
+		if(sideDistX < sideDistY)
+        {
+          sideDistX += deltaDistX;
+          tile_pos.x += stepX;
+          side = 0;
+        }
+        else
+        {
+          sideDistY += deltaDistY;
+          tile_pos.y += stepY;
+          side = 1;
+        }
+        //Check if ray has hit a wall
+        if(map->map_arr[(int)tile_pos.y][(int)tile_pos.x] != '0')
+			break;
+	}
+	float perpWallDist;
+
+	if(side == 0) perpWallDist = (sideDistX - deltaDistX);
+    else          perpWallDist = (sideDistY - deltaDistY);
+
+	printf("perpWallDist : %f\n", perpWallDist);
+	printf("x : %f\n", (perpWallDist * dir.x) - (int)map_pos.x % 50 / 50.0);
+	printf("y : %f\n", (perpWallDist * dir.y) - (int)map_pos.y % 50 / 50.0);
+
+	ft_line(data->line,
+		map_pos.x,
+		map_pos.y,
+		map_pos.x + ((perpWallDist) + (int)map_pos.x % 50 / 50.0) * dir.x * WALL_SIZE,
+		map_pos.y + ((perpWallDist) + (int)map_pos.y % 50 / 50.0) * dir.y * WALL_SIZE,
+		0xFFFFFFFF);
+}

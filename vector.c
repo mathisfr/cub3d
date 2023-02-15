@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:59:24 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/14 17:04:26 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:19:20 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_pos	*ptr_pos(float x, float y)
 	return (output);
 }
 
-t_pos	normalize_vector(t_pos v)
+t_vector	normalize_vector(t_vector v)
 {
 	float	length;
 
