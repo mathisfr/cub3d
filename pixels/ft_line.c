@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:18:11 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/15 18:45:36 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/15 19:01:48 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,16 @@ void	draw_ray(t_data *data, t_map *map, t_pos map_pos, t_pos tile_pos, t_vector 
     else          perpWallDist = (sideDistY - deltaDistY);
 
 	printf("perpWallDist : %f\n", perpWallDist);
-	printf("x : %f\n", (perpWallDist * dir.x) - (int)map_pos.x % 50 / 50.0);
-	printf("y : %f\n", (perpWallDist * dir.y) - (int)map_pos.y % 50 / 50.0);
+	printf("x : %f\n", (int)map_pos.x % 50 / 50.0);
+	printf("y : %f\n", (int)map_pos.y % 50 / 50.0);
 	
 	ft_line(data->line, 
 		map_pos.x,
 		map_pos.y,
-		map_pos.x + ((perpWallDist) + (int)map_pos.x % 50 / 50.0) * dir.x * WALL_SIZE,
-		map_pos.y + ((perpWallDist) + (int)map_pos.y % 50 / 50.0) * dir.y * WALL_SIZE,
+		map_pos.x + ((perpWallDist * dir.x) - (int)map_pos.y % 50 / 50.0) * WALL_SIZE,
+		map_pos.y + ((perpWallDist * dir.y) - (int)map_pos.y % 50 / 50.0) * WALL_SIZE,
 		0xFFFFFFFF);
+
+	// si side = 0 alors faut prendre map_pos x pour le decalage.
+	// adapter le perpWall en fonction de l'angle ???
 }
