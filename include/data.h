@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:12:02 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/15 16:50:58 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/15 19:04:27 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_data
 	t_map		*map;
 	mlx_image_t	*img;
 	mlx_image_t	*vec_dir;
-	mlx_image_t *line;
+	mlx_image_t	*line;
 }	t_data;
 
 t_data	*init_data(mlx_t *mlx, char *filename);
