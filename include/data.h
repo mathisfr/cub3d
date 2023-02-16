@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:12:02 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/15 19:04:27 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/16 15:48:18 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,14 @@ typedef struct s_data
 	t_player	*player;
 	t_map		*map;
 	mlx_image_t	*img;
+	mlx_image_t *_3d;
 	mlx_image_t	*vec_dir;
 	mlx_image_t	*line;
 }	t_data;
 
 t_data	*init_data(mlx_t *mlx, char *filename);
 void	free_data(t_data *data);
+void	drawline3d(t_data *data, int *x, int *side, float *perpWallDist);
+void	ft_line2(mlx_image_t *img, int begin_x, int begin_y, int end_x, int end_y, uint32_t color);
 
 #endif

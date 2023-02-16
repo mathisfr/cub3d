@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:09:48 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/15 18:50:11 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/16 13:23:41 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
 
 # define PL_HITBOX 10
 # define PL_HITBOX2 9
-# define PLAYER_SPEED 3
+# define PLAYER_SPEED 8
 
 #endif

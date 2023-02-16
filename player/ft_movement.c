@@ -3,27 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_movement.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:02:14 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/15 18:50:08 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/16 15:20:31 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_vector_rotation(t_vector *vec, int *angle)
+void	ft_vector_rotation(t_vector *vec, float angle)
 {
 	t_vector	new_vec;
-	float		_angle;
+	while (angle < 0)
+		angle += 360; 
 
-	if (*angle < 0)
-		*angle = 359;
-	else if (*angle > 359)
-		*angle = 0;
-	_angle = *angle * (M_PI / 180);
-	new_vec.x = vec->x * cos(_angle) - vec->y * sin(_angle);
-	new_vec.y = vec->x * sin(_angle) + vec->y * cos(_angle);
+	angle = angle * (M_PI / 180);
+	new_vec.x = vec->x * cos(angle) - vec->y * sin(angle);
+	new_vec.y = vec->x * sin(angle) + vec->y * cos(angle);
 	vec->x = new_vec.x;
 	vec->y = new_vec.y;
 }
@@ -79,7 +76,7 @@ void	ft_movement(t_data *data)
 		data->player->angle += -ROTATE_SPEED;
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		data->player->angle += ROTATE_SPEED;
-	ft_vector_rotation(&data->player->movement, &data->player->angle);
+	ft_vector_rotation(&data->player->movement, (float)data->player->angle);
 	update_player(data->player,
 		pos(data->img->instances[0].x, data->img->instances[0].y), data->map);
 	move_and_rotate(data, &angle_save);
