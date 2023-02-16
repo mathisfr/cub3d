@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:12:02 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/16 15:48:18 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/16 16:50:10 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_H
-# define DATA_H
+#define DATA_H
 
-# include "player.h"
-# include "map.h"
-# include "MLX42/MLX42.h"
+#include "player.h"
+#include "map.h"
+#include "MLX42/MLX42.h"
 
 typedef struct s_data
 {

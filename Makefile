@@ -1,6 +1,6 @@
 NAME = Cub3d
 LIBMLX	:= ~/MLX42/
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -O3
 MLX_FLAGS = $(LIBMLX)/libmlx42.a
 CC = gcc
 LIBFT = libft/libft_enhanced.a

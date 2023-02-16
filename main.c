@@ -40,14 +40,14 @@ void hook(void* param)
 	//	draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
 	//}
 
-	float angle = -30;
+	float angle = -(PLAYER_FOV / 2.0);
 	ft_memset(data->_3d->pixels, 1, data->_3d->width * data->_3d->height * sizeof(int32_t));
-	for(int i = 0; i < WINDOW_WIDTH; i+=4)
+	for(int i = 0; i < (int)data->_3d->width; i += DOWN_SCALE)
 	{
 		v.x = 0;
 		v.y = -1;
 		ft_vector_rotation(&v, (float)data->player->angle);
-		angle += 30.0 / (WINDOW_WIDTH/8);
+		angle += (PLAYER_FOV / 2.0) / (data->_3d->width / (2 * DOWN_SCALE));
 		ft_vector_rotation(&v, angle);
 		v = normalize_vector(v);
 		draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v, i);
@@ -102,7 +102,7 @@ int32_t	main(int argc, char **argv)
 	map_img = mlx_new_image(mlx, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
 	vector_dir = mlx_new_image(mlx, VEC_LEN, VEC_LEN);
 	player = mlx_new_image(mlx, (PL_HITBOX * 2) + 1, (PL_HITBOX * 2) + 1);
-	data->_3d = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	data->_3d = mlx_new_image(mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	data->img = player;
 	data->vec_dir = vector_dir;
 	if (data->player->tile_pos.y == 0)
@@ -114,8 +114,13 @@ int32_t	main(int argc, char **argv)
 	circleBres(PL_HITBOX, PL_HITBOX, PL_HITBOX, 0xFF0000FF, player);
 	ft_draw_map(data->map, 0xFF00FF00, map_img);
 	ft_line(data->vec_dir, VEC_LEN / 2, VEC_LEN / 2, VEC_LEN / 2 + data->player->dir.x, VEC_LEN / 2 + data->player->dir.y, 0xFF0000FF);
+<<<<<<< HEAD
 	mlx_image_to_window(mlx, data->_3d, 0, 0);
 	mlx_image_to_window(mlx, map_img, 0, 0);
+=======
+	mlx_image_to_window(mlx, map_img, 0, 0);
+	mlx_image_to_window(mlx, data->_3d, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+>>>>>>> 67a613fb54991be2b04842ed87664b7049082523
 	mlx_image_to_window(mlx, player, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
 	mlx_image_to_window(mlx, vector_dir, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
 	mlx_image_t *line = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
