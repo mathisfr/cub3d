@@ -103,6 +103,7 @@ int32_t	main(int argc, char **argv)
 	vector_dir = mlx_new_image(mlx, VEC_LEN, VEC_LEN);
 	player = mlx_new_image(mlx, (PL_HITBOX * 2) + 1, (PL_HITBOX * 2) + 1);
 	data->_3d = mlx_new_image(mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	data->background = mlx_new_image(mlx, data->_3d->width, data->_3d->height);
 	data->img = player;
 	data->vec_dir = vector_dir;
 	if (data->player->tile_pos.y == 0)
@@ -114,8 +115,12 @@ int32_t	main(int argc, char **argv)
 	circleBres(PL_HITBOX, PL_HITBOX, PL_HITBOX, 0xFF0000FF, player);
 	ft_draw_map(data->map, 0xFF00FF00, map_img);
 	ft_line(data->vec_dir, VEC_LEN / 2, VEC_LEN / 2, VEC_LEN / 2 + data->player->dir.x, VEC_LEN / 2 + data->player->dir.y, 0xFF0000FF);
+	ft_rectangle(0, 0, data->_3d->width, data->_3d->height / 2, 0xFFFF0000, data->background);
+	ft_rectangle(0, data->_3d->height / 2, data->_3d->width, data->_3d->height, 0xFF00FF00, data->background);
+	mlx_image_to_window(mlx, data->background, 0, 0);
 	mlx_image_to_window(mlx, data->_3d, 0, 0);
 	mlx_image_to_window(mlx, map_img, 0, 0);
+	map_img->instances[0].enabled = 0;
 	mlx_image_to_window(mlx, player, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
 	mlx_image_to_window(mlx, vector_dir, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
 	mlx_image_t *line = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
