@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:43:54 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/15 14:44:04 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:41:52 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_bool	check_tile_pos2(t_player *player, t_tile_pos tile_pos)
 	return (FALSE);
 }
 
+//check the desired tile_pos which is one of the 8 adjacent tile to see if the player is inside that tile
 static t_bool	check_tile_pos(t_player *player, t_tile_pos t_p)
 {
 	if (t_p == TL && map_pos_to_tile_pos(pos(player->map_pos.x - PL_HITBOX2,
@@ -54,6 +55,7 @@ static t_bool	check_tile_pos(t_player *player, t_tile_pos t_p)
 	return (check_tile_pos2(player, t_p));
 }
 
+//add a tile pos to the list
 static void	add_tile_to_list(t_player *player,
 	t_list **output, t_tile_pos tile_pos)
 {
@@ -81,6 +83,7 @@ static void	add_tile_to_list(t_player *player,
 	ft_lstadd_back(output, t);
 }
 
+//Set the max and min value if adjacent tester tile is a wall (only set if it's unset)
 void	set_max_and_min(t_pos *max, t_pos *min,
 	t_map *map, t_pos tile_pos)
 {
@@ -102,6 +105,7 @@ void	set_max_and_min(t_pos *max, t_pos *min,
 			- WALL_SIZE / 2 - PL_HITBOX;
 }
 
+//Get all tiles the player is currently in
 t_list	*get_all_tiles(t_player *player)
 {
 	t_list	*output;

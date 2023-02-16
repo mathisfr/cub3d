@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:29:27 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/13 16:06:16 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:58:49 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ static int	open_file(char *filepath)
 	check_extension(filepath);
 	fd = open(filepath, O_RDONLY);
 	if (fd == -1 || fd == 0)
-		system_error("PARSING: input file");
+		system_error("PARSING: can't open input file");
 	return (fd);
 }
 
+//Return a linked list of all data (only map for now)
 static t_list	*get_data(int fd)
 {
 	t_list	*map_lines;
@@ -47,6 +48,7 @@ static t_list	*get_data(int fd)
 	return (map_lines);
 }
 
+//Create a 2d array in map->map_arr correspond to the linked list
 static t_map	*data_to_map(t_list *map_lines)
 {
 	t_map	*map;
@@ -69,6 +71,7 @@ static t_map	*data_to_map(t_list *map_lines)
 	return (map);
 }
 
+//Parse the map
 t_map	*parse_map(char *filepath)
 {
 	int		fd;

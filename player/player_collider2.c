@@ -6,12 +6,13 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:37:59 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/15 18:25:31 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:45:10 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//Update player collider
 void	update_player_collider(t_player *player, t_map *map,
 	t_bool force_update)
 {
@@ -38,6 +39,7 @@ void	update_player_collider(t_player *player, t_map *map,
 		player->collider.max.y = 9999;
 }
 
+//check for vertical collision
 static t_bool	has_vertical_collision(t_player *player)
 {
 	float	final_pos_y;
@@ -63,6 +65,7 @@ static t_bool	has_vertical_collision(t_player *player)
 	return (FALSE);
 }
 
+//check for horizontal collision
 static t_bool	has_horizontal_collision(t_player *player)
 {
 	float	final_pos_x;

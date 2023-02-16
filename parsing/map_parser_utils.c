@@ -6,12 +6,13 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:48:21 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/13 15:14:58 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:58:33 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//Get the max size on x and y for the parsed map
 void	set_map_size(t_map *map, t_list *map_lines)
 {
 	t_list	*lst;
@@ -31,6 +32,7 @@ void	set_map_size(t_map *map, t_list *map_lines)
 	map->max_x_size = max_x;
 }
 
+//Used to fill line with spaces if they are shorter than the max x
 char	*copy_and_fill(char *line, int size)
 {
 	int		i;
@@ -57,6 +59,7 @@ char	*copy_and_fill(char *line, int size)
 	return (output);
 }
 
+//Check if there is an invalid character
 void	check_line(char *line)
 {
 	int	i;
@@ -83,6 +86,7 @@ void	remove_endl(char *line)
 		line[length - 1] = 0;
 }
 
+//Check the extension of the file
 void	check_extension(char *line)
 {
 	int	length;

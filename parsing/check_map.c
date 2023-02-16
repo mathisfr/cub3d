@@ -6,12 +6,13 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:27:33 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/15 14:41:39 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:56:39 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//Check the border of the map to check for a 0
 static void	check_borders(t_map *map)
 {
 	int	x;
@@ -30,6 +31,7 @@ static void	check_borders(t_map *map)
 			parsing_error("Map is not enclosed");
 }
 
+//Check for the 4 adjacent tile if they are ground
 static void	check_adjacent(t_map *map, int x, int y)
 {
 	if (y != 0)
@@ -46,6 +48,7 @@ static void	check_adjacent(t_map *map, int x, int y)
 			parsing_error("Map is not enclosed");
 }
 
+//Check for every space if there is a ground adjacent
 static void	check_spaces(t_map *map)
 {
 	int	x;
@@ -65,6 +68,7 @@ static void	check_spaces(t_map *map)
 	}
 }
 
+//Check for player character if they are at least one
 static void	check_player(t_map *map)
 {
 	int	x;
@@ -91,6 +95,7 @@ static void	check_player(t_map *map)
 		parsing_error("Too many player symbol found in map");
 }
 
+//Check if the map is valid
 void	check_map(t_map *map)
 {
 	check_borders(map);

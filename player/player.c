@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:56:10 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/15 18:50:11 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/16 17:44:24 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static t_bool	is_player(char c)
 	return (FALSE);
 }
 
+//Initialize player position in the player struct
 static void	set_player_pos(t_player *player, t_map *map)
 {
 	int	x;
@@ -43,6 +44,7 @@ static void	set_player_pos(t_player *player, t_map *map)
 	}
 }
 
+//Init the player struct to the starting value
 t_player	*init_player(t_map *map)
 {
 	t_player	*player;
@@ -66,12 +68,17 @@ t_player	*init_player(t_map *map)
 	return (player);
 }
 
+//Update player pos based on the instance (can be removed later)
+//Update player collision as well
 void	update_player(t_player *player, t_pos instance_pos, t_map *map)
 {
 	player->map_pos.x = instance_pos.x + PL_HITBOX;
 	player->map_pos.y = instance_pos.y + PL_HITBOX;
 	player->tile_pos = map_pos_to_tile_pos(player->map_pos);
 	//printf("player map pos : %fx%fy\n", player->map_pos.x, player->map_pos.y);
-	update_player_collider(player, map, FALSE);
-	handle_player_collision(player);
+	if (player->movement.x != 0 || player->movement.y != 0)
+	{
+		update_player_collider(player, map, FALSE);
+		handle_player_collision(player);
+	}
 }
