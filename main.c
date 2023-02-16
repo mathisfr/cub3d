@@ -17,23 +17,55 @@ void hook(void* param)
 		mlx_close_window(data->mlx);
 	ft_movement(data);
 	t_vector v;
-	v.x = -1;
+	v.x = 0;
 	v.y = -1;
-	//v = normalize_vector(v);
+	v = normalize_vector(v);
 	ft_memset(data->line->pixels, 1, data->line->width * data->line->height * sizeof(int32_t));
-	draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
-	v.x = +1;
-	v.y = +1;
-	//v = normalize_vector(v);
-	//draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
-	v.x = +1;
-	v.y = -1;
-	//v = normalize_vector(v);
-	//draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
-	v.x = -1;
-	v.y = 1;
-	//v = normalize_vector(v);
-	//draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+	for (int i = 315; i < 360; i++)
+	{
+		v.x = 0;
+		v.y = -1;
+		ft_vector_rotation(&v, &data->player->angle);
+		ft_vector_rotation(&v, &i);
+		printf("i : %d\n", i);
+		draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+	}
+	for(int i = 0; i <= 45; i++)
+	{
+		v.x = 0;
+		v.y = -1;
+		v = normalize_vector(v);
+		ft_vector_rotation(&v, &data->player->angle);
+		ft_vector_rotation(&v, &i);
+		draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+	}
+	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+	// v.x = +1;
+	// v.y = +1;
+	// v = normalize_vector(v);
+	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+	// v.x = +1;
+	// v.y = -1;
+	// v = normalize_vector(v);
+	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+	// v.x = -1;
+	// v.y = 1;
+	// v = normalize_vector(v);
+	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+	// v.y = 1;
+	// v.x = 0;
+	// v = normalize_vector(v);
+	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+	// v.y = -1;
+	// v = normalize_vector(v);
+	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+	// v.y = 0;
+	// v.x = 1;
+	// v = normalize_vector(v);
+	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+	// v.x = -1;
+	// v = normalize_vector(v);
+	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
 }
 
 int32_t	main(int argc, char **argv)

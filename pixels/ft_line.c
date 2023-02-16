@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:18:11 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/15 19:01:48 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/16 12:55:43 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,39 @@ void	ft_line(mlx_image_t *img, int begin_x, int begin_y, int end_x, int end_y, u
 
 void	draw_ray(t_data *data, t_map *map, t_pos map_pos, t_pos tile_pos, t_vector dir)
 {
-	float deltaDistX = (dir.x == 0) ? MAXFLOAT : abs((int)(1 / dir.x));
-    float deltaDistY = (dir.y == 0) ? MAXFLOAT : abs((int)(1 / dir.y));
+	if (dir.x == 0 && dir.y == 0)
+		return;
+	dir = normalize_vector(dir);
+	printf("dir %fx%fy\n", dir.x,dir.y);
+	float deltaDistX = (dir.x == 0) ? MAXFLOAT : fabs((1.0 / dir.x));
+    float deltaDistY = (dir.y == 0) ? MAXFLOAT : fabs((1.0 / dir.y));
     int stepX;
     int stepY;
 	float sideDistX = 0;
 	float sideDistY = 0;
 	int side;
 
+	printf("deltaDistX : %f\t deltaDistY : %f\n", deltaDistX, deltaDistY);
+
 	if(dir.x < 0)
     {
       stepX = -1;
-	  sideDistX = 0 * deltaDistX;
+	  sideDistX = (int)map_pos.x % 50 / 50.0 * deltaDistX;
     }
     else
     {
       stepX = 1;
-	  sideDistX = 1.0 * deltaDistX;
+	  sideDistX = (1 -(int)map_pos.x % 50 / 50.0) * deltaDistX;
     }
     if(dir.y < 0)
     {
       stepY = -1;
-	  sideDistY = 0 * deltaDistY;
+	  sideDistY = (int)map_pos.y % 50 / 50.0 * deltaDistY;
     }
     else
     {
       stepY = 1;
-	  sideDistY = 1.0 * deltaDistY;
+	  sideDistY = (1 - (int)map_pos.y % 50 / 50.0) * deltaDistY;
     }
 
 	while (1)
@@ -90,15 +96,37 @@ void	draw_ray(t_data *data, t_map *map, t_pos map_pos, t_pos tile_pos, t_vector 
 	if(side == 0) perpWallDist = (sideDistX - deltaDistX);
     else          perpWallDist = (sideDistY - deltaDistY);
 
+
+	//perpWallDist = sqrt(pow(sideDistX, 2) + pow((sideDistY - deltaDistY), 2));
+	t_pos	end_pos;
+
+	end_pos.x = map_pos.x;
+	end_pos.y = map_pos.y;
+
+	float angle = atan2(dir.y, dir.x);
+
+	printf("side : %d\n", side);
+	//perpWallDist *= cos(angle);
+
+	if (dir.x < 0)
+		end_pos.x += perpWallDist * cos(angle) * WALL_SIZE;
+	else
+		end_pos.x += perpWallDist * cos(angle) * WALL_SIZE;
+	if (dir.y < 0)
+		end_pos.y += perpWallDist * sin(angle) * WALL_SIZE;
+	else 
+		end_pos.y += perpWallDist * sin(angle) * WALL_SIZE;
+
 	printf("perpWallDist : %f\n", perpWallDist);
-	printf("x : %f\n", (int)map_pos.x % 50 / 50.0);
-	printf("y : %f\n", (int)map_pos.y % 50 / 50.0);
+	printf("sideDist %fx,%fy\n",sideDistX, sideDistY);
+	printf("x : %f\n", end_pos.x);
+	printf("y : %f\n", end_pos.y);
 	
 	ft_line(data->line, 
 		map_pos.x,
 		map_pos.y,
-		map_pos.x + ((perpWallDist * dir.x) - (int)map_pos.y % 50 / 50.0) * WALL_SIZE,
-		map_pos.y + ((perpWallDist * dir.y) - (int)map_pos.y % 50 / 50.0) * WALL_SIZE,
+		end_pos.x,
+		end_pos.y,
 		0xFFFFFFFF);
 
 	// si side = 0 alors faut prendre map_pos x pour le decalage.
