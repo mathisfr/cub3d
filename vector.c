@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:59:24 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/15 14:19:20 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/16 12:43:23 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_vector	normalize_vector(t_vector v)
 {
 	float	length;
 
-	length = sqrtf(abs((int)v.x) + abs((int)v.y));
+	length = sqrtf(v.x * v.x + v.y * v.y);
 	if (length == 0)
 		return (v);
 	v.x /= length;
