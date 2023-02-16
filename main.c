@@ -114,13 +114,8 @@ int32_t	main(int argc, char **argv)
 	circleBres(PL_HITBOX, PL_HITBOX, PL_HITBOX, 0xFF0000FF, player);
 	ft_draw_map(data->map, 0xFF00FF00, map_img);
 	ft_line(data->vec_dir, VEC_LEN / 2, VEC_LEN / 2, VEC_LEN / 2 + data->player->dir.x, VEC_LEN / 2 + data->player->dir.y, 0xFF0000FF);
-<<<<<<< HEAD
 	mlx_image_to_window(mlx, data->_3d, 0, 0);
 	mlx_image_to_window(mlx, map_img, 0, 0);
-=======
-	mlx_image_to_window(mlx, map_img, 0, 0);
-	mlx_image_to_window(mlx, data->_3d, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
->>>>>>> 67a613fb54991be2b04842ed87664b7049082523
 	mlx_image_to_window(mlx, player, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
 	mlx_image_to_window(mlx, vector_dir, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
 	mlx_image_t *line = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
