@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_line.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:18:11 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 13:56:55 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 14:15:04 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,9 +168,14 @@ void	draw_ray(t_data *data, t_map *map, t_pos map_pos, t_pos tile_pos, t_vector 
 
 	//if ((int)perpWallDist != 0)
 	int	drawloop = 0;
+	t_raycastHit ray;
+	ray.perpWallDist = perpWallDist;
+	ray.pos.x = 0;
+	ray.pos.y = 0;
+	ray.texture = data->texture.wall_n;
 	while (drawloop < DOWN_SCALE)
 	{
-		drawline3d(data, &x, &side, &perpWallDist);
+		drawline3d(data, x, &ray);
 		x++;
 		drawloop++;
 	}
