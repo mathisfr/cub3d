@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:18:00 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/13 16:14:17 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/21 14:12:29 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
+# include "MLX42/MLX42.h"
+
+typedef struct s_texture
+{
+	mlx_texture_t	*wall_n;
+	mlx_texture_t	*wall_s;
+	mlx_texture_t	*wall_e;
+	mlx_texture_t	*wall_o;
+}	t_texture;
 
 typedef struct s_map
 {

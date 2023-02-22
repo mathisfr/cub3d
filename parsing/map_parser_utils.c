@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:48:21 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/16 17:58:33 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/21 19:21:41 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	check_line(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != ' ' && line[i] != '0' && line[i] != '1'
+		if (line[i] != ' ' && line[i] != '0' && line[i] != '1' && line[i] != '2'
 			&& line[i] != 'N' && line[i] != 'E' && line[i] != 'S'
 			&& line[i] != 'W' && line [i] != '\n')
 			parsing_error("Invalid character found");

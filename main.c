@@ -1,8 +1,3 @@
-// -----------------------------------------------------------------------------
-// Codam Coding College, Amsterdam @ 2022-2023 by W2Wizard.
-// See README in the root project for more information.
-// -----------------------------------------------------------------------------
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
@@ -21,24 +16,6 @@ void hook(void* param)
 	v.y = -1;
 	v = normalize_vector(v);
 	ft_memset(data->line->pixels, 1, data->line->width * data->line->height * sizeof(int32_t));
-	//for (int i = 315; i < 360; i++)
-	//{
-	//	v.x = 0;
-	//	v.y = -1;
-	//	ft_vector_rotation(&v, (float)data->player->angle);
-	//	ft_vector_rotation(&v, (float)i);
-	//	printf("i : %d\n", i);
-	//	draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
-	//}
-	//for(int i = 0; i <= 45; i++)
-	//{
-	//	v.x = 0;
-	//	v.y = -1;
-	//	v = normalize_vector(v);
-	//	ft_vector_rotation(&v, (float)data->player->angle);
-	//	ft_vector_rotation(&v, (float)i);
-	//	draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
-	//}
 
 	float angle = -(PLAYER_FOV / 2.0);
 	ft_memset(data->_3d->pixels, 1, data->_3d->width * data->_3d->height * sizeof(int32_t));
@@ -52,34 +29,77 @@ void hook(void* param)
 		v = normalize_vector(v);
 		draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v, i);
 	}
+}
 
-	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
-	// v.x = +1;
-	// v.y = +1;
-	// v = normalize_vector(v);
-	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
-	// v.x = +1;
-	// v.y = -1;
-	// v = normalize_vector(v);
-	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
-	// v.x = -1;
-	// v.y = 1;
-	// v = normalize_vector(v);
-	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
-	// v.y = 1;
-	// v.x = 0;
-	// v = normalize_vector(v);
-	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
-	// v.y = -1;
-	// v = normalize_vector(v);
-	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
-	// v.y = 0;
-	// v.x = 1;
-	// v = normalize_vector(v);
-	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
-	// v.x = -1;
-	// v = normalize_vector(v);
-	// draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v);
+/*
+ * Returns the current, relative, mouse cursor position on the window, starting
+ * from the top left corner.
+ *
+ * Negative values or values greater than window width or height
+ * indicate that it is outside the window.
+ *
+ * @param[in] mlx The MLX instance handle.
+ * @param[out] x The position.
+ * @param[out] y The position.
+
+void mlx_get_mouse_pos(mlx_t* mlx, int32_t* x, int32_t* y);
+
+
+ * Sets the mouse position.
+ *
+ * @param[in] mlx The MLX instance handle.
+ * @param[in] pos The position.
+
+void mlx_set_mouse_pos(mlx_t* mlx, int32_t x, int32_t y);
+
+
+ * This function sets the cursor callback, which is called when the
+ * mouse position changes. Position is relative to the window.
+ *
+ * @param[in] mlx The MLX instance handle.
+ * @param[in] func The cursor callback function.
+ * @param[in] param An additional optional parameter.
+
+void mlx_cursor_hook(mlx_t* mlx, mlx_cursorfunc func, void* param);
+
+
+ * Callback function used to handle raw mouse movement.
+ *
+ * @param[in] xpos The mouse x position.
+ * @param[in] ypos The mouse y position.
+ * @param[in] param Additional parameter to pass on to the function.
+
+typedef void (*mlx_cursorfunc)(double xpos, double ypos, void* param);
+*/
+
+void	look_mouse(double xpos, double ypos, void *param)
+{
+	t_data	*data;
+
+	(void) ypos;
+	data = (t_data *)param;
+	if (xpos > 0 && xpos < WINDOW_WIDTH && xpos != WINDOW_WIDTH / 2)
+	{
+		if (xpos > WINDOW_WIDTH / 2)
+			data->player->angle += round((xpos - (WINDOW_WIDTH / 2)) * SENSITIVITY);
+		else if (xpos < WINDOW_WIDTH / 2)
+			data->player->angle -= round(((WINDOW_WIDTH / 2) - xpos) * SENSITIVITY);
+		mlx_set_mouse_pos(data->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	}
+
+}
+
+void	key_action(mlx_key_data_t keydata, void *param)
+{
+	t_data	*data;
+
+	data = (t_data *)param;
+	if (keydata.action == MLX_PRESS
+		&& keydata.key == MLX_KEY_ENTER)
+		data->key_action = true;
+	if (keydata.action == MLX_RELEASE
+		&& keydata.key == MLX_KEY_ENTER)
+		data->key_action = false;
 }
 
 int32_t	main(int argc, char **argv)
@@ -89,7 +109,6 @@ int32_t	main(int argc, char **argv)
 	mlx_image_t	*player;
 	mlx_image_t	*vector_dir;
 	mlx_image_t	*map_img;
-
 	if (argc != 2)
 	{
 		ft_printf_error("ERROR: Wrong argument count\n");
@@ -99,13 +118,15 @@ int32_t	main(int argc, char **argv)
 	if (!mlx)
 		system_error("MLX ERROR");
 	data = init_data(mlx, argv[1]);
+	data->texture.wall_n = mlx_load_png("/Users/matfranc/Downloads/brick.png");
 	map_img = mlx_new_image(mlx, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
 	vector_dir = mlx_new_image(mlx, VEC_LEN, VEC_LEN);
 	player = mlx_new_image(mlx, (PL_HITBOX * 2) + 1, (PL_HITBOX * 2) + 1);
-	data->_3d = mlx_new_image(mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	data->_3d = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->background = mlx_new_image(mlx, data->_3d->width, data->_3d->height);
 	data->img = player;
 	data->vec_dir = vector_dir;
+	data->key_action = FALSE;
 	if (data->player->tile_pos.y == 0)
 		data->player->tile_pos.y = 1;
 	if (data->player->tile_pos.x == 0)
@@ -120,13 +141,20 @@ int32_t	main(int argc, char **argv)
 	mlx_image_to_window(mlx, data->background, 0, 0);
 	mlx_image_to_window(mlx, data->_3d, 0, 0);
 	mlx_image_to_window(mlx, map_img, 0, 0);
-	map_img->instances[0].enabled = 0;
 	mlx_image_to_window(mlx, player, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
 	mlx_image_to_window(mlx, vector_dir, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
 	mlx_image_t *line = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx_image_to_window(mlx, line, 0, 0);
 	data->line = line;
+	data->line->instances[0].enabled = 0;
+	map_img->instances[0].enabled = 0;
+	data->img->instances[0].enabled = 0;
+	data->vec_dir->instances[0].enabled = 0;
+	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
+	mlx_set_mouse_pos(data->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	mlx_key_hook(mlx, key_action, data);
 	mlx_loop_hook(mlx, &hook, data);
+	mlx_cursor_hook(mlx, look_mouse, data);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);

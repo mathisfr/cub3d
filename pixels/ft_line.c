@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:18:11 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/16 17:52:04 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:32:04 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,5 +173,13 @@ void	draw_ray(t_data *data, t_map *map, t_pos map_pos, t_pos tile_pos, t_vector 
 		drawline3d(data, &x, &side, &perpWallDist);
 		x++;
 		drawloop++;
+	}
+	if (map->map_arr[(int)tile_pos.y][(int)tile_pos.x] == '2'
+		&& perpWallDist < 1.5)
+	{
+		if (data->key_action == TRUE)
+		{
+			map->map_arr[(int)tile_pos.y][(int)tile_pos.x] = '0';
+		}
 	}
 }
