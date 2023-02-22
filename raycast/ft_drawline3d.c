@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:41:15 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 15:11:47 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 15:27:49 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,7 @@ void	drawline3d(t_data *data, int x, t_raycastHit *ray)
 	int end;
 
 	// Je divise la distance par la hauteur de notre fenetre
-	if (ray->perpWallDist < 0.5)
-		lineheight = data->image._3d->height;
-	else
-		lineheight = (int)((float)data->image._3d->height / ray->perpWallDist);
+	lineheight = (int)((float)data->image._3d->height / ray->perpWallDist);
 
 	// On commence à dessiner à la moitier de la fenetre et
 	// à la moitier de la hauteur du mur pour centrer

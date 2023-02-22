@@ -6,15 +6,15 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:59:24 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/21 14:07:13 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 15:38:56 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_pos	tile_pos_to_map_pos(t_pos tile_pos)
+t_vector	tile_pos_to_map_pos(t_pos tile_pos)
 {
-	t_pos	output;
+	t_vector	output;
 
 	output.x = 0;
 	output.y = 0;
@@ -27,7 +27,7 @@ t_pos	tile_pos_to_map_pos(t_pos tile_pos)
 	return (output);
 }
 
-t_pos	map_pos_to_tile_pos(t_pos map_pos)
+t_pos	map_pos_to_tile_pos(t_vector map_pos)
 {
 	t_pos	output;
 
@@ -39,6 +39,15 @@ t_pos	map_pos_to_tile_pos(t_pos map_pos)
 t_pos	pos(float x, float y)
 {
 	t_pos	output;
+
+	output.x = x;
+	output.y = y;
+	return (output);
+}
+
+t_vector v_pos(float x, float y)
+{
+	t_vector	output;
 
 	output.x = x;
 	output.y = y;

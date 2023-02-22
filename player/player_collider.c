@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:43:54 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/16 17:41:52 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 15:39:34 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static t_bool	check_tile_pos2(t_player *player, t_tile_pos tile_pos)
 {
-	if (tile_pos == BL && map_pos_to_tile_pos(pos(player->map_pos.x,
+	if (tile_pos == BL && map_pos_to_tile_pos(v_pos(player->map_pos.x,
 				player->map_pos.y + PL_HITBOX2)).y != player->tile_pos.y
-		&& map_pos_to_tile_pos(pos(player->map_pos.x - PL_HITBOX2,
+		&& map_pos_to_tile_pos(v_pos(player->map_pos.x - PL_HITBOX2,
 				player->map_pos.y)).x != player->tile_pos.x)
 		return (TRUE);
-	if (tile_pos == L && map_pos_to_tile_pos(pos(player->map_pos.x - PL_HITBOX2,
+	if (tile_pos == L && map_pos_to_tile_pos(v_pos(player->map_pos.x - PL_HITBOX2,
 				player->map_pos.y)).x != player->tile_pos.x)
 		return (TRUE);
 	return (FALSE);
@@ -28,28 +28,28 @@ static t_bool	check_tile_pos2(t_player *player, t_tile_pos tile_pos)
 //check the desired tile_pos which is one of the 8 adjacent tile to see if the player is inside that tile
 static t_bool	check_tile_pos(t_player *player, t_tile_pos t_p)
 {
-	if (t_p == TL && map_pos_to_tile_pos(pos(player->map_pos.x - PL_HITBOX2,
+	if (t_p == TL && map_pos_to_tile_pos(v_pos(player->map_pos.x - PL_HITBOX2,
 				player->map_pos.y)).x != player->tile_pos.x
-		&& map_pos_to_tile_pos(pos(player->map_pos.x,
+		&& map_pos_to_tile_pos(v_pos(player->map_pos.x,
 				player->map_pos.y - PL_HITBOX2)).y != player->tile_pos.y)
 		return (TRUE);
-	if (t_p == T && map_pos_to_tile_pos(pos(player->map_pos.x,
+	if (t_p == T && map_pos_to_tile_pos(v_pos(player->map_pos.x,
 				player->map_pos.y - PL_HITBOX2)).y != player->tile_pos.y)
 		return (TRUE);
-	if (t_p == TR && map_pos_to_tile_pos(pos(player->map_pos.x,
+	if (t_p == TR && map_pos_to_tile_pos(v_pos(player->map_pos.x,
 				player->map_pos.y - PL_HITBOX2)).y != player->tile_pos.y
-		&& map_pos_to_tile_pos(pos(player->map_pos.x + PL_HITBOX2,
+		&& map_pos_to_tile_pos(v_pos(player->map_pos.x + PL_HITBOX2,
 				player->map_pos.y)).x != player->tile_pos.x)
 		return (TRUE);
-	if (t_p == R && map_pos_to_tile_pos(pos(player->map_pos.x + PL_HITBOX2,
+	if (t_p == R && map_pos_to_tile_pos(v_pos(player->map_pos.x + PL_HITBOX2,
 				player->map_pos.y)).x != player->tile_pos.x)
 		return (TRUE);
-	if (t_p == BR && map_pos_to_tile_pos(pos(player->map_pos.x + PL_HITBOX2,
+	if (t_p == BR && map_pos_to_tile_pos(v_pos(player->map_pos.x + PL_HITBOX2,
 				player->map_pos.y)).x != player->tile_pos.x
-		&& map_pos_to_tile_pos(pos(player->map_pos.x,
+		&& map_pos_to_tile_pos(v_pos(player->map_pos.x,
 				player->map_pos.y + PL_HITBOX2)).y != player->tile_pos.y)
 		return (TRUE);
-	if (t_p == B && map_pos_to_tile_pos(pos(player->map_pos.x,
+	if (t_p == B && map_pos_to_tile_pos(v_pos(player->map_pos.x,
 				player->map_pos.y + PL_HITBOX2)).y != player->tile_pos.y)
 		return (TRUE);
 	return (check_tile_pos2(player, t_p));

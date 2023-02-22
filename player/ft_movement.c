@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:02:14 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 13:14:09 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 15:50:25 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ void	ft_vector_rotation(t_vector *vec, float angle)
 
 static void	move_and_rotate(t_data *data)
 {
-	data->image.player->instances[0].y += (int)(data->player->movement.y);
-	data->image.player->instances[0].x += (int)(data->player->movement.x);
-	data->player->dir.x = data->player->movement.x * ((VEC_LEN / 2) / MOVE_SPEED);
-	data->player->dir.y = data->player->movement.y * ((VEC_LEN / 2) / MOVE_SPEED);
+	data->image.player->instances[0].y += roundf(data->player->movement.y);
+	data->image.player->instances[0].x += roundf(data->player->movement.x);
 }
 
 static void	get_movement_input(t_data *data)
@@ -54,17 +52,12 @@ static void	get_movement_input(t_data *data)
 		data->player->movement.x = 1;
 	else
 		data->player->movement.x = 0;
-	data->player->movement = normalize_vector(data->player->movement);
 	data->player->movement.x *= PLAYER_SPEED;
 	data->player->movement.y *= PLAYER_SPEED;
 }
 
 void	ft_movement(t_data *data)
 {
-	t_vector	move_save;
-
-	move_save.x = data->player->movement.x;
-	move_save.y = data->player->movement.y;
 	get_movement_input(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 		data->player->angle += -ROTATE_SPEED;

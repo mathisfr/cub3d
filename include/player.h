@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:13:14 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/14 17:49:31 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 15:36:33 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_player_collider
 typedef struct s_player
 {
 	t_pos				tile_pos;
-	t_pos				map_pos;
+	t_vector			map_pos;
 	int					angle;
 	t_player_collider	collider;
 	t_vector			dir;

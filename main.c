@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:59:09 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 13:04:45 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 15:50:06 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,6 @@ void	start_mlx(t_data *data)
 	data->image._3d = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->image.background = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->image.line = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-
-	//Peut etre a degager
-	data->player->dir.x = 0;
-	data->player->dir.y = -(VEC_LEN / 2);
-	//-
 
 	//pour l'instant un cercle
 	circleBres(PL_HITBOX, PL_HITBOX, PL_HITBOX, 0xFF0000FF, data->image.player);
