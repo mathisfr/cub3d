@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:14:08 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 13:20:20 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 13:56:58 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	handle_raycast(t_data *data)
 	float		angle_increment;
 
 	ft_memset(data->image.line->pixels, 1, data->image.line->width * data->image.line->height * sizeof(int32_t));
-	ft_memset(data->image._3d->pixels, 1, data->image._3d->width * data->image._3d->height * sizeof(int32_t));
 
 	v.x = 0;
 	v.y = -1;
