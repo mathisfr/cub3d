@@ -6,12 +6,21 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:14:01 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/16 18:50:50 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 13:52:50 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 # define VECTOR_H
+
+
+
+typedef struct	s_raycastHit
+{
+	t_vector		pos;
+	float			perpWallDist;
+	mlx_texture_t	texture;
+}
 
 typedef struct s_pos
 {

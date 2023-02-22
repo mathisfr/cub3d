@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:18:11 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 13:05:59 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 13:22:03 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	draw_ray(t_data *data, t_map *map, t_pos map_pos, t_pos tile_pos, t_vector 
 {
 	if (dir.x == 0 && dir.y == 0)
 		return;
-	dir = normalize_vector(dir);
+	//dir = normalize_vector(dir);
 	float deltaDistX = (dir.x == 0) ? MAXFLOAT : fabs((1.0 / dir.x));
 	float deltaDistY = (dir.y == 0) ? MAXFLOAT : fabs((1.0 / dir.y));
 	int stepX;
@@ -155,12 +155,12 @@ void	draw_ray(t_data *data, t_map *map, t_pos map_pos, t_pos tile_pos, t_vector 
 
 	//printf("angle : %f\n", angle * 180 / M_PI);
 
-	ft_line2(data->image.line,
-		map_pos.x,
-		map_pos.y,
-		end_pos.x,
-		end_pos.y,
-		0xFFFFFFFF);
+	//ft_line2(data->image.line,
+	//	map_pos.x,
+	//	map_pos.y,
+	//	end_pos.x,
+	//	end_pos.y,
+	//	0xFFFFFFFF);
 
 
 	perpWallDist = perpWallDist * fabs(sin((angle - (data->player->angle * M_PI / 180))));

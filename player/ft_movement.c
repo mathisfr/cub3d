@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:02:14 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 12:35:48 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 13:14:09 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 void	ft_vector_rotation(t_vector *vec, float angle)
 {
 	t_vector	new_vec;
+	float		cosa;
+	float		sina;
+
 	while (angle < 0)
 		angle += 360; 
-
 	angle = angle * (M_PI / 180);
-	new_vec.x = vec->x * cos(angle) - vec->y * sin(angle);
-	new_vec.y = vec->x * sin(angle) + vec->y * cos(angle);
+	cosa = cos(angle);
+	sina = sin(angle);
+	new_vec.x = vec->x * cosa - vec->y * sina;
+	new_vec.y = vec->x * sina + vec->y * cosa;
 	vec->x = new_vec.x;
 	vec->y = new_vec.y;
 }
