@@ -6,11 +6,29 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:14:08 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 16:29:27 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 17:15:57 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	update_time(t_data *data)
+{
+	static double	last_update;
+	double			time;
+
+	if (last_update == 0)
+	{
+		last_update = mlx_get_time();
+		time = last_update;
+	}
+	else
+	{
+		time = mlx_get_time();
+		data->delta_time = time - last_update;
+		last_update = time;
+	}
+}
 
 static void	handle_input(t_data *data)
 {
@@ -95,8 +113,8 @@ void update(void* param)
 	t_data	*data;
 
 	data = param;
-
-	printf("player map pos : %fx %fy\n", data->player->map_pos.x, data->player->map_pos.y);
+	update_time(data);
+	//printf("deltaTime : %f\n", data->delta_time);
 	handle_input(data);
 	handle_raycast(data);
 }
