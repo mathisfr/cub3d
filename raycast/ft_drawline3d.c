@@ -6,11 +6,49 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:41:15 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 12:36:10 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 13:06:07 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+uint32_t	getpixelcolor(uint8_t *pixel)
+{
+	return (((pixel[0] << 0))
+		| ((pixel[1] << 8))
+		| ((pixel[2] << 16))
+		| ((pixel[3] << 24)));
+}
+
+int	getpixelpos(int x, int wall_size)
+{
+	float tmp = x % (int)WALL_SIZE;
+	tmp *= (float)wall_size / WALL_SIZE;
+	return tmp;
+	//return ((int)(((int)x % (int)WALL_SIZE) * (WALL_SIZE / (float)wall_size)));
+}
+
+void	drawvline(int start, int end, int x, t_data *data)
+{
+	int		wall_size;
+	float	y;
+	float	stepy;
+	int		stepx;
+
+	y = 0;
+	wall_size = data->texture.wall_n->width;
+	stepy = (float)wall_size / (float)(end - start);
+	stepx = getpixelpos(x, wall_size);
+	while (start < end && y < wall_size)
+	{
+		ft_pixel_put(data->image._3d, x, start, getpixelcolor(data->texture.wall_n->pixels + ((((int)y) * data->texture.wall_n->width) + stepx) * data->texture.wall_n->bytes_per_pixel));
+		// *gethpos(data->texture.wall_n->pixels,
+		// 		data->texture.wall_n->bytes_per_pixel, x, start, data->texture.wall_n->height)
+		y += stepy;
+		//printf("y = %f\tx = %f\n",y, stepx);
+		start++;
+	}
+}
 
 void	drawline3d(t_data *data, int *x, int *side, float *perpWallDist)
 {
@@ -41,7 +79,8 @@ void	drawline3d(t_data *data, int *x, int *side, float *perpWallDist)
 	// Change de couleur si le murs est vertical ou horizontal
 	// X est l'axe horizontal de là où on dessine
 	if (*side == 0)
-		ft_line(data->image._3d, *x, start, *x, end, 0xFFFFFF00);
+		drawvline(start, end, *x, data); // ft_line(data->_3d, *x, start, *x, end, 0xFFFFFF00);
 	else
-		ft_line(data->image._3d, *x, start, *x, end, 0xFF00FFFF);
+		drawvline(start, end, *x, data);
+		//ft_line(data->_3d, *x, start, *x, end, 0xFF00FFFF);
 }

@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:59:09 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 12:14:35 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 13:04:45 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,35 @@
 #include <stdlib.h>
 #include <memory.h>
 #include "cub3d.h"
+
+void look_mouse(double xpos, double ypos, void *param)
+{
+	t_data *data;
+	
+	(void) ypos;
+	data = (t_data *)param;
+	if (xpos > 0 && xpos < WINDOW_WIDTH && xpos != WINDOW_WIDTH / 2)
+	{
+		if (xpos > WINDOW_WIDTH / 2)
+			data->player->angle += round((xpos - (WINDOW_WIDTH / 2)) * SENSITIVITY);
+		else if (xpos < WINDOW_WIDTH / 2)
+			data->player->angle -= round(((WINDOW_WIDTH / 2) - xpos) * SENSITIVITY);
+		mlx_set_mouse_pos(data->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	}
+}
+
+void key_action(mlx_key_data_t keydata, void *param)
+{
+	t_data *data;
+
+	data = (t_data *)param;
+	if (keydata.action == MLX_PRESS
+		&& keydata.key == MLX_KEY_ENTER)
+		data->key_action = true;
+	if (keydata.action == MLX_RELEASE
+		&& keydata.key == MLX_KEY_ENTER)
+		data->key_action = false;
+}
 
 void	start_mlx(t_data *data)
 {
@@ -46,6 +75,11 @@ void	start_mlx(t_data *data)
 	mlx_image_to_window(data->mlx, data->image.line, 0, 0);
 	mlx_image_to_window(data->mlx, data->image.player, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
 
+	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
+	mlx_set_mouse_pos(data->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	mlx_key_hook(data->mlx, key_action, data);
+	mlx_cursor_hook(data->mlx, look_mouse, data);
+
 	mlx_loop_hook(data->mlx, &update, data);
 	mlx_loop(data->mlx);
 }
@@ -53,7 +87,6 @@ void	start_mlx(t_data *data)
 int32_t	main(int argc, char **argv)
 {
 	t_data		*data;
-
 	if (argc != 2)
 	{
 		ft_printf_error("ERROR: Wrong argument count\n");

@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:12:02 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/21 18:10:00 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 13:05:14 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ typedef struct s_data
 {
 	mlx_t			*mlx;
 	t_player		*player;
+	t_bool			key_action;
 	t_map			*map;
 	t_image			image;
 	t_texture		texture;
+
 	unsigned int	ceiling_color;
 	unsigned int	floor_color;
 }	t_data;
