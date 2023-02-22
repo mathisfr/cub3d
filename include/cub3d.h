@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:14:38 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/16 17:13:10 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/22 12:30:53 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ void	ft_movement(t_data *data);
 void			parsing_error(char *message);
 void			system_error(char *prompt);
 void			malloc_error(void);
+
+void update(void* param);
 
 #endif

@@ -6,23 +6,12 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:29:27 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/16 17:58:49 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/21 16:45:17 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "map_parser_utils.h"
-
-static int	open_file(char *filepath)
-{
-	int	fd;
-
-	check_extension(filepath);
-	fd = open(filepath, O_RDONLY);
-	if (fd == -1 || fd == 0)
-		system_error("PARSING: can't open input file");
-	return (fd);
-}
 
 //Return a linked list of all data (only map for now)
 static t_list	*get_data(int fd)
@@ -72,13 +61,11 @@ static t_map	*data_to_map(t_list *map_lines)
 }
 
 //Parse the map
-t_map	*parse_map(char *filepath)
+t_map	*parse_map(int fd)
 {
-	int		fd;
 	t_list	*map_data;
 	t_map	*map;
 
-	fd = open_file(filepath);
 	map_data = get_data(fd);
 	map = data_to_map(map_data);
 	ft_lstclear(&map_data, free);

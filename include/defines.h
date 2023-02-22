@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:09:48 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/16 17:55:54 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/22 12:42:49 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@
 # define MOVE_SPEED 4
 # define ROTATE_SPEED 4
 
-# define DOWN_SCALE 8
+# define DOWN_SCALE 4.0
 
 # define PL_HITBOX 10
 # define PL_HITBOX2 9
 # define PLAYER_SPEED 8
 # define PLAYER_FOV 60
+# define PLAYER_FOV2 30
 
 #endif

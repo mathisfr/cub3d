@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_line.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:18:11 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/16 17:52:04 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/22 12:33:33 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	draw_ray(t_data *data, t_map *map, t_pos map_pos, t_pos tile_pos, t_vector 
 
 	//perpWallDist = sqrt(pow(sideDistX, 2) + pow((sideDistY - deltaDistY), 2));
 	t_pos	end_pos;
-
+//
 	end_pos.x = map_pos.x;
 	end_pos.y = map_pos.y;
 
@@ -155,7 +155,7 @@ void	draw_ray(t_data *data, t_map *map, t_pos map_pos, t_pos tile_pos, t_vector 
 
 	//printf("angle : %f\n", angle * 180 / M_PI);
 
-	ft_line2(data->line,
+	ft_line2(data->image.line,
 		map_pos.x,
 		map_pos.y,
 		end_pos.x,

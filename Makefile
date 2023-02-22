@@ -1,12 +1,13 @@
 NAME = Cub3d
 LIBMLX	:= ~/MLX42/
-CFLAGS = -Wall -Wextra -Werror -g -O3
+CFLAGS = -Wall -Wextra -Werror -g -Ofast
 MLX_FLAGS = $(LIBMLX)/libmlx42.a
 CC = gcc
 LIBFT = libft/libft_enhanced.a
 HEADERS	:= -I ./include -I $(LIBMLX)/include
 
 SOURCES = 	main.c \
+			update.c \
 			pixels/ft_pixel_put.c \
 			pixels/ft_rectangle.c \
 			pixels/ft_circle.c \
@@ -17,6 +18,9 @@ SOURCES = 	main.c \
 			parsing/map_parser_utils.c \
 			parsing/check_map.c \
 			parsing/error.c \
+			parsing/parse_fc_color.c \
+			parsing/parse_texture_and_color.c \
+			parsing/parse_texture.c \
 			vector.c \
 			player/player.c \
 			player/player_collider.c \

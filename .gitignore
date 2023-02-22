@@ -4,3 +4,4 @@
 **/*.a
 *.a
 Cub3d
+.DS_Store

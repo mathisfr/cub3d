@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:02:14 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/16 15:20:31 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 12:35:48 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,12 @@ void	ft_vector_rotation(t_vector *vec, float angle)
 	vec->y = new_vec.y;
 }
 
-static void	move_and_rotate(t_data *data, int *angle_save)
+static void	move_and_rotate(t_data *data)
 {
-	data->img->instances[0].y += truncf(data->player->movement.y);
-	data->img->instances[0].x += truncf(data->player->movement.x);
-	data->vec_dir->instances[0].y = data->img->instances[0].y;
-	data->vec_dir->instances[0].x = data->img->instances[0].x;
+	data->image.player->instances[0].y += (int)(data->player->movement.y);
+	data->image.player->instances[0].x += (int)(data->player->movement.x);
 	data->player->dir.x = data->player->movement.x * ((VEC_LEN / 2) / MOVE_SPEED);
 	data->player->dir.y = data->player->movement.y * ((VEC_LEN / 2) / MOVE_SPEED);
-	if (*angle_save != data->player->angle)
-	{
-		ft_memset(data->vec_dir->pixels, 1,
-			data->vec_dir->width * data->vec_dir->height * sizeof(int32_t));
-		ft_line(data->vec_dir, VEC_LEN / 2, VEC_LEN / 2, (VEC_LEN / 2) + data->player->dir.x, (VEC_LEN / 2) + data->player->dir.y, 0xFF0000FF);
-	}
 }
 
 static void	get_movement_input(t_data *data)
@@ -65,10 +57,8 @@ static void	get_movement_input(t_data *data)
 
 void	ft_movement(t_data *data)
 {
-	int			angle_save;
 	t_vector	move_save;
 
-	angle_save = data->player->angle;
 	move_save.x = data->player->movement.x;
 	move_save.y = data->player->movement.y;
 	get_movement_input(data);
@@ -78,6 +68,6 @@ void	ft_movement(t_data *data)
 		data->player->angle += ROTATE_SPEED;
 	ft_vector_rotation(&data->player->movement, (float)data->player->angle);
 	update_player(data->player,
-		pos(data->img->instances[0].x, data->img->instances[0].y), data->map);
-	move_and_rotate(data, &angle_save);
+		pos(data->image.player->instances[0].x, data->image.player->instances[0].y), data->map);
+	move_and_rotate(data);
 }
