@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawline3d.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:41:15 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 16:17:31 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 17:16:22 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,30 @@ void	cleanline(int start, int end, int x, mlx_image_t *img)
 
 void	drawvline(int start, int end, int x, t_data *data, t_raycastHit *ray)
 {
-	int		wall_size;
-	float	y;
-	float	stepy;
-	float	stepx;
-	int		pos;
+	int				wall_size;
+	float			y;
+	float			stepy;
+	float			stepx;
+	int				pos;
+	mlx_texture_t	*texture;
+
 
 	y = 0;
 	if (ray->side == TOP || ray->side == BOTTOM)
+	{
 		pos = ray->pos.x;
+		texture = data->texture.wall_n;
+		if (ray->side == BOTTOM)
+			texture = data->texture.wall_s;
+	}
 	if (ray->side == LEFT || ray->side == RIGHT)
+	{
 		pos = ray->pos.y;
-	wall_size = data->texture.wall_n->width;
+		texture = data->texture.wall_o;
+		if (ray->side == RIGHT)
+			texture = data->texture.wall_e;
+	}
+	wall_size = texture->width;
 	stepy = (float)wall_size / (float)(end - start);
 	stepx = getpixelpos(pos, wall_size);
 	cleanline(0, start, x, data->image._3d);
@@ -59,9 +71,9 @@ void	drawvline(int start, int end, int x, t_data *data, t_raycastHit *ray)
 		if (start > 0 || end < (int)data->image._3d->height - 1)
 		{
 			ft_pixel_put(data->image._3d, x, start,
-				getpixelcolor(data->texture.wall_n->pixels
-					+ ((((int)y) * data->texture.wall_n->width) + (int)stepx)
-					* data->texture.wall_n->bytes_per_pixel));
+				getpixelcolor(texture->pixels
+					+ ((((int)y) * texture->width) + (int)stepx)
+					* texture->bytes_per_pixel));
 		}
 		y += stepy;
 		start++;

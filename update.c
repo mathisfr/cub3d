@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:14:08 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 16:29:27 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 17:24:58 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@ static void	render(t_data *data, t_raycastHit hit, int x)
 	int	drawloop;
 
 	drawloop = 0;
-	//printf("hit -> %fx %fy\n", hit.pos.x, hit.pos.y);
 	while (drawloop < DOWN_SCALE)
 	{
 		drawline3d(data, x, &hit);
 		x++;
 		drawloop++;
 	}
-	if (data->map->map_arr[(int)data->player->tile_pos.y][(int)data->player->tile_pos.x] == '2'
+	if (data->map->map_arr[tile_pos->y][tile_pos->x] == '2'
 		&& hit.perpWallDist < 1.5)
 	{
 		if (data->key_action == TRUE)
@@ -95,8 +94,6 @@ void update(void* param)
 	t_data	*data;
 
 	data = param;
-
-	printf("player map pos : %fx %fy\n", data->player->map_pos.x, data->player->map_pos.y);
 	handle_input(data);
 	handle_raycast(data);
 }
