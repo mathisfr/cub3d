@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:58:58 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 15:22:22 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 16:37:18 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,25 @@ static t_pos	init_sideDist_step(t_data *data, t_vector dir,
 	if(dir.x < 0)
 	{
 		step.x = -1;
-		sideDist->x = (int)data->player->map_pos.x % 50
-	  		/ 50.0 * deltaDist.x;
+		sideDist->x = (int)data->player->map_pos.x % (int)WALL_SIZE
+	  		/ WALL_SIZE * deltaDist.x;
 	}
 	else
 	{
 		step.x = 1;
-		sideDist->x = (1 -(int)data->player->map_pos.x % 50 / 50.0)
+		sideDist->x = (1 -(int)data->player->map_pos.x % (int)WALL_SIZE / WALL_SIZE)
 	  	* deltaDist.x;
 	}
 	if(dir.y < 0)
 	{
 		step.y = -1;
-		sideDist->y = (int)data->player->map_pos.y % 50 / 50.0
+		sideDist->y = (int)data->player->map_pos.y % (int)WALL_SIZE / WALL_SIZE
 			* deltaDist.y;
 	}
 	else
 	{
 		step.y = 1;
-		sideDist->y = (1 - (int)data->player->map_pos.y % 50 / 50.0)
+		sideDist->y = (1 - (int)data->player->map_pos.y % (int)WALL_SIZE / WALL_SIZE)
 			* deltaDist.y;
 	}
 	return (step);
@@ -94,8 +94,6 @@ static void	update_raycastHit(t_raycastHit *hit, t_data *data, float angle, t_ve
 		hit->pos.y += hit->perpWallDist * sin(angle) * WALL_SIZE;
 	else
 		hit->pos.y += hit->perpWallDist * sin(angle) * WALL_SIZE;
-	printf("%fx %fy\n", hit->pos.x, hit->pos.y);
-	printf("perpWallDist : %f\n", hit->perpWallDist);
 	ft_line2(data->image.line,
 		data->player->map_pos.x,
 		data->player->map_pos.y,

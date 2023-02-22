@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:14:08 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 15:22:54 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 16:29:27 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	render(t_data *data, t_raycastHit hit, int x)
 	int	drawloop;
 
 	drawloop = 0;
+	//printf("hit -> %fx %fy\n", hit.pos.x, hit.pos.y);
 	while (drawloop < DOWN_SCALE)
 	{
 		drawline3d(data, x, &hit);
@@ -94,6 +95,8 @@ void update(void* param)
 	t_data	*data;
 
 	data = param;
+
+	printf("player map pos : %fx %fy\n", data->player->map_pos.x, data->player->map_pos.y);
 	handle_input(data);
 	handle_raycast(data);
 }

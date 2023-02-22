@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:02:14 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 15:50:25 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 16:47:38 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ void	ft_vector_rotation(t_vector *vec, float angle)
 
 static void	move_and_rotate(t_data *data)
 {
-	data->image.player->instances[0].y += roundf(data->player->movement.y);
-	data->image.player->instances[0].x += roundf(data->player->movement.x);
+	printf("movement : %fx %fy\n", data->player->movement.x, data->player->movement.y);
+	data->player->map_pos.y += (int)data->player->movement.y;
+	data->player->map_pos.x += (int)data->player->movement.x;
+
 }
 
 static void	get_movement_input(t_data *data)
@@ -64,7 +66,7 @@ void	ft_movement(t_data *data)
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		data->player->angle += ROTATE_SPEED;
 	ft_vector_rotation(&data->player->movement, (float)data->player->angle);
-	update_player(data->player,
-		pos(data->image.player->instances[0].x, data->image.player->instances[0].y), data->map);
+	update_player(data->player, data->map);
 	move_and_rotate(data);
+	data->player->tile_pos = map_pos_to_tile_pos(data->player->map_pos);
 }

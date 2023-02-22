@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:59:09 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 15:50:06 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 16:12:52 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,19 @@ void	start_mlx(t_data *data)
 	data->image.line = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 
 	//pour l'instant un cercle
-	circleBres(PL_HITBOX, PL_HITBOX, PL_HITBOX, 0xFF0000FF, data->image.player);
+	//circleBres(PL_HITBOX, PL_HITBOX, PL_HITBOX, 0xFF0000FF, data->image.player);
 
 	//draw minimap
-	ft_draw_map(data->map, 0xFF00FF00, data->image.map_img);
+	//ft_draw_map(data->map, 0xFF00FF00, data->image.map_img);
 
 	ft_rectangle(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT / 2, data->ceiling_color, data->image.background);
 	ft_rectangle(0, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT, data->floor_color, data->image.background);
 
 	mlx_image_to_window(data->mlx, data->image.background, 0, 0);
 	mlx_image_to_window(data->mlx, data->image._3d, 0, 0);
-	mlx_image_to_window(data->mlx, data->image.map_img, 0, 0);
+	//mlx_image_to_window(data->mlx, data->image.map_img, 0, 0);
 	mlx_image_to_window(data->mlx, data->image.line, 0, 0);
-	mlx_image_to_window(data->mlx, data->image.player, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
+	//mlx_image_to_window(data->mlx, data->image.player, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
 
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
 	mlx_set_mouse_pos(data->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);

@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:37:59 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/16 17:45:10 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/22 16:48:35 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	update_player_collider(t_player *player, t_map *map,
 		tile_list = tile_list->next;
 	}
 	if (player->collider.max.x == 0)
-		player->collider.max.x = 9999;
+		player->collider.max.x = 999999;
 	if (player->collider.max.y == 0)
-		player->collider.max.y = 9999;
+		player->collider.max.y = 999999;
 }
 
 //check for vertical collision
