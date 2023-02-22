@@ -12,23 +12,26 @@ void hook(void* param)
 		mlx_close_window(data->mlx);
 	ft_movement(data);
 	t_vector v;
-	v.x = 0;
-	v.y = -1;
-	v = normalize_vector(v);
+	t_vector u;
+	u.x = 0;
+	u.y = -1;
+	ft_vector_rotation(&u, (float)data->player->angle);
 	ft_memset(data->line->pixels, 1, data->line->width * data->line->height * sizeof(int32_t));
+<<<<<<< HEAD
 
+=======
+>>>>>>> e5cbb42172281f9175272ee3bd5da4fac6e4c4a3
 	float angle = -(PLAYER_FOV / 2.0);
 	ft_memset(data->_3d->pixels, 1, data->_3d->width * data->_3d->height * sizeof(int32_t));
 	for(int i = 0; i < (int)data->_3d->width; i += DOWN_SCALE)
 	{
-		v.x = 0;
-		v.y = -1;
-		ft_vector_rotation(&v, (float)data->player->angle);
+		v.x = u.x;
+		v.y = u.y;
 		angle += (PLAYER_FOV / 2.0) / (data->_3d->width / (2 * DOWN_SCALE));
 		ft_vector_rotation(&v, angle);
-		v = normalize_vector(v);
 		draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v, i);
 	}
+<<<<<<< HEAD
 }
 
 /*
@@ -100,6 +103,8 @@ void	key_action(mlx_key_data_t keydata, void *param)
 	if (keydata.action == MLX_RELEASE
 		&& keydata.key == MLX_KEY_ENTER)
 		data->key_action = false;
+=======
+>>>>>>> e5cbb42172281f9175272ee3bd5da4fac6e4c4a3
 }
 
 int32_t	main(int argc, char **argv)
