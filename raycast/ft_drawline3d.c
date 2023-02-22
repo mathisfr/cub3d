@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawline3d.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:41:15 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 15:06:36 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:11:47 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	drawvline(int start, int end, int x, t_data *data, t_raycastHit *ray)
 		pos = ray->pos.y;
 	wall_size = data->texture.wall_n->width;
 	stepy = (float)wall_size / (float)(end - start);
-	printf("%d\n", pos);
 	stepx = getpixelpos(pos, wall_size);
 	cleanline(0, start, x, data->image._3d);
 	while (start < end && y < wall_size)
