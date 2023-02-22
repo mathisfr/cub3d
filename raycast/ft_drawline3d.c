@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:41:15 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 14:46:48 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:06:36 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,22 @@ void	drawvline(int start, int end, int x, t_data *data, t_raycastHit *ray)
 	int		wall_size;
 	float	y;
 	float	stepy;
-	int		stepx;
+	float	stepx;
 	int		pos;
 
 	y = 0;
-	if (side == N || side == S)
+	if (ray->side == TOP || ray->side == BOTTOM)
 		pos = ray->pos.x;
-	if (side == E || side == W)
+	if (ray->side == LEFT || ray->side == RIGHT)
 		pos = ray->pos.y;
 	wall_size = data->texture.wall_n->width;
 	stepy = (float)wall_size / (float)(end - start);
+	printf("%d\n", pos);
 	stepx = getpixelpos(pos, wall_size);
 	cleanline(0, start, x, data->image._3d);
 	while (start < end && y < wall_size)
 	{
-		ft_pixel_put(data->image._3d, x, start, getpixelcolor(data->texture.wall_n->pixels + ((((int)y) * data->texture.wall_n->width) + stepx) * data->texture.wall_n->bytes_per_pixel));
+		ft_pixel_put(data->image._3d, x, start, getpixelcolor(data->texture.wall_n->pixels + ((((int)y) * data->texture.wall_n->width) + (int)stepx) * data->texture.wall_n->bytes_per_pixel));
 		y += stepy;
 		start++;
 	}
