@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:58:58 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 15:07:46 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:31:54 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	execute_dda(t_data *data, t_vector dir, t_vector *sideDist, t_vector 
 	int		side;
 
 	step = init_sideDist_step(data, dir, sideDist, deltaDist);
-	while (data->map->map_arr[tile_pos->y][tile_pos->x] != '0')
+	while (1)
 	{
 		if (sideDist->x < sideDist->y)
 		{
@@ -76,6 +76,8 @@ static int	execute_dda(t_data *data, t_vector dir, t_vector *sideDist, t_vector 
 			tile_pos->y += step.y;
 			side = 1;
 		}
+		if (data->map->map_arr[tile_pos->y][tile_pos->x] != '0')
+			break;
 	}
 	return (side);
 }
@@ -110,6 +112,8 @@ t_raycastHit	raycast(t_data *data, t_vector dir, float angle)
 	t_pos			tile_pos;
 	int				side;
 
+	(void)angle;
+
 	init_deltaDist(dir, &deltaDist);
 	tile_pos.x = (int)data->player->tile_pos.x;
 	tile_pos.y = (int)data->player->tile_pos.y;
@@ -118,7 +122,7 @@ t_raycastHit	raycast(t_data *data, t_vector dir, float angle)
 		output.perpWallDist = sideDist.x - deltaDist.x;
 	else
 		output.perpWallDist = sideDist.y - deltaDist.y;
-	update_raycastHit(&output, data, angle, dir);
+	update_raycastHit(&output, data, atan2(dir.y, dir.x), dir);
 	if (side == 0 && dir.x > 0)
 		output.side = LEFT;
 	else if (side == 0 && dir.x < 0)

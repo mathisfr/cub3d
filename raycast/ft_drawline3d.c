@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:41:15 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 15:12:35 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:47:09 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,17 @@ void	drawvline(int start, int end, int x, t_data *data, t_raycastHit *ray)
 		pos = ray->pos.y;
 	wall_size = data->texture.wall_n->width;
 	stepy = (float)wall_size / (float)(end - start);
-	printf("%d\n", pos);
 	stepx = getpixelpos(pos, wall_size);
 	cleanline(0, start, x, data->image._3d);
 	while (start < end && y < wall_size)
 	{
-		ft_pixel_put(data->image._3d, x, start,
-			getpixelcolor(data->texture.wall_n->pixels
-				+ ((((int)y) * data->texture.wall_n->width) + (int)stepx)
-				* data->texture.wall_n->bytes_per_pixel));
+		if (start > 0 || end < (int)data->image._3d->height - 1)
+		{
+			ft_pixel_put(data->image._3d, x, start,
+				getpixelcolor(data->texture.wall_n->pixels
+					+ ((((int)y) * data->texture.wall_n->width) + (int)stepx)
+					* data->texture.wall_n->bytes_per_pixel));
+		}
 		y += stepy;
 		start++;
 	}
@@ -75,23 +77,14 @@ void	drawline3d(t_data *data, int x, t_raycastHit *ray)
 	int end;
 
 	// Je divise la distance par la hauteur de notre fenetre
-	if (ray->perpWallDist < 0.5)
-		lineheight = data->image._3d->height;
-	else
-		lineheight = (int)((float)data->image._3d->height / ray->perpWallDist);
+	lineheight = (int)((float)data->image._3d->height / ray->perpWallDist);
 
 	// On commence à dessiner à la moitier de la fenetre et
 	// à la moitier de la hauteur du mur pour centrer
 	start = (data->image._3d->height / 2.0) - (lineheight / 2.0);
-	// Si on est en dehors de l'ecran je met start à zero
-	// pour pas qu'il dessiner pour rien dehors
-	if (start < 0)
-		start = 0;
 
 	// Pratiquement comme start
 	end = (data->image._3d->height / 2.0) + (lineheight / 2.0);
-	if (end >= (int)data->image._3d->height)
-		end = data->image._3d->height - 1;
 
 	// Change de couleur si le murs est vertical ou horizontal
 	// X est l'axe horizontal de là où on dessine

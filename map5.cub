@@ -1,7 +1,7 @@
-NO ./textures/wall.png
-SO ./textures/wall.png
-WE ./textures/wall.png
-EA ./textures/wall.png
+NO /Users/matfranc/Downloads/brick.png
+SO /Users/matfranc/Downloads/brick.png
+WE /Users/matfranc/Downloads/brick.png
+EA /Users/matfranc/Downloads/brick.png
 
 F 0,180,0
 C 0,191,255

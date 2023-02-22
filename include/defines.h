@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:09:48 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 13:51:41 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:34:02 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define ROTATE_SPEED 4
 # define SENSITIVITY 0.05
 
-# define DOWN_SCALE 4.0
+# define DOWN_SCALE 1.0
 
 # define PL_HITBOX 10
 # define PL_HITBOX2 9
