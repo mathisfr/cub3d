@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:41:15 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 15:06:36 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:12:35 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ void	drawvline(int start, int end, int x, t_data *data, t_raycastHit *ray)
 	cleanline(0, start, x, data->image._3d);
 	while (start < end && y < wall_size)
 	{
-		ft_pixel_put(data->image._3d, x, start, getpixelcolor(data->texture.wall_n->pixels + ((((int)y) * data->texture.wall_n->width) + (int)stepx) * data->texture.wall_n->bytes_per_pixel));
+		ft_pixel_put(data->image._3d, x, start,
+			getpixelcolor(data->texture.wall_n->pixels
+				+ ((((int)y) * data->texture.wall_n->width) + (int)stepx)
+				* data->texture.wall_n->bytes_per_pixel));
 		y += stepy;
 		start++;
 	}
