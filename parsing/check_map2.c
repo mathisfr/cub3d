@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:56:14 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 17:03:31 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:44:13 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	check_doors(t_map *map)
 		{
 			if (map->map_arr[y][x] == '2')
 				if (!is_door_valid(map, x, y))
-					parsing_error("Door must be between 2 wall and 2 empty ground");
+					parsing_error("Invalid door position.");
 			x++;
 		}
 		y++;

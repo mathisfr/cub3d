@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture_and_color.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:20:59 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 17:23:11 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:44:36 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	check_line(t_data *data, char *line)
 		while (line[i] && is_space(line[i]))
 			i++;
 		if (!line[i])
-			break;
+			break ;
 		if (line[i] == 'C' || line[i] == 'F')
 			return (parse_fc_color(data, &(line[i])));
 		if (line[i] == 'N' || line[i] == 'S'

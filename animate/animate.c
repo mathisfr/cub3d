@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:17:09 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/23 17:06:31 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:40:27 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	update_animation(t_data *data, double time)
 {
-	static	int		i;
+	static int		i;
 	static double	last_update;
 	int				nbr_image;
 
 	nbr_image = 10;
-	if (time > last_update + 0.1 && (data->anim_state == TRUE || data->key_action == TRUE))
+	if (time > last_update + 0.1
+		&& (data->anim_state == TRUE || data->key_action == TRUE))
 	{
 		if (i == 0)
 			data->anim_state = TRUE;

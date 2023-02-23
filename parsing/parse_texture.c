@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:23:54 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/21 16:46:04 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:44:42 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	check_line(char *line)
 			i++;
 		while (!is_space(line[i]))
 			i++;
-		while(is_space(line[i]))
+		while (is_space(line[i]))
 			i++;
 		if (line[i])
 			parsing_error("Wrong format in input file");
