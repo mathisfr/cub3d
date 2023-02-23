@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:37:59 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 15:33:01 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:52:39 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	update_player_collider(t_player *player, t_map *map,
 	t_list	*tile_list;
 
 	(void) force_update;
+	ft_lstclear(&(player->collider.all_tiles), free);
 	player->collider.all_tiles = get_all_tiles(player);
 	//opti : check if all_tiles and output of all_tiles differ
 	player->collider.max.x = 0;

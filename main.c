@@ -6,13 +6,12 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:59:09 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 18:04:41 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:07:56 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <memory.h>
 #include "cub3d.h"
 
 void look_mouse(double xpos, double ypos, void *param)
@@ -126,6 +125,7 @@ void	start_mlx(t_data *data)
 int32_t	main(int argc, char **argv)
 {
 	t_data		*data;
+
 	if (argc != 2)
 	{
 		ft_printf_error("ERROR: Wrong argument count\n");

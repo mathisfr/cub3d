@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:14:38 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/23 14:48:11 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:58:27 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>
-# include <math.h>
 # include "MLX42/MLX42.h"
 
 // pixels
