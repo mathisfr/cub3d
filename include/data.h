@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:12:02 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 17:08:31 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 14:17:33 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ typedef struct s_texture
 
 typedef struct	s_image
 {
-	mlx_image_t		*player;
 	mlx_image_t 	*_3d;
 	mlx_image_t 	*background;
-	mlx_image_t		*line;
 	mlx_image_t		*map_img;
 }	t_image;
 
@@ -56,5 +54,6 @@ int		parse_texture(t_data *data, char *line);
 void	parse_texture_and_color(t_data *data, int fd);
 int		parse_fc_color(t_data *data, char *line);
 void	check_extension(char *line);
+void	draw_minimap(t_data *data);
 
 #endif

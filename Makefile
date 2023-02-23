@@ -8,6 +8,7 @@ HEADERS	:= -I ./include -I $(LIBMLX)/include
 
 SOURCES = 	main.c \
 			update.c \
+			draw_minimap.c \
 			pixels/ft_pixel_put.c \
 			pixels/ft_rectangle.c \
 			pixels/ft_circle.c \
@@ -29,7 +30,6 @@ SOURCES = 	main.c \
 			raycast/ft_drawline3d.c \
 			raycast/raycast.c \
 			
-
 
 SOURCES_BONUS =
 

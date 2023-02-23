@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:58:58 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 16:37:18 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 15:03:37 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ static void	update_raycastHit(t_raycastHit *hit, t_data *data, float angle, t_ve
 		hit->pos.y += hit->perpWallDist * sin(angle) * WALL_SIZE;
 	else
 		hit->pos.y += hit->perpWallDist * sin(angle) * WALL_SIZE;
-	ft_line2(data->image.line,
-		data->player->map_pos.x,
-		data->player->map_pos.y,
-		hit->pos.x,
-		hit->pos.y,
+	ft_line2(data->image.map_img,
+		MINIMAP_WIDTH2,
+		MINIMAP_WIDTH2,
+		MINIMAP_WIDTH2 + (hit->pos.x - data->player->map_pos.x) / WALL_SIZE * MINIMAP_WIDTH / (float)(MINIMAP_NB_WALL * 2),
+		MINIMAP_WIDTH2 + (hit->pos.y - data->player->map_pos.y) / WALL_SIZE * MINIMAP_WIDTH / (float)(MINIMAP_NB_WALL * 2),
 		0xFFFFFFFF);
 	hit->perpWallDist = hit->perpWallDist
 		* fabs(sin((angle - (data->player->angle * M_PI / 180))));
