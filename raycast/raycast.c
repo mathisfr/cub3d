@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:58:58 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 17:43:24 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:23:49 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	init_deltaDist(t_vector dir, t_vector *deltaDist)
+static void	init_deltadist(t_vector dir, t_vector *deltaDist)
 {
 	if (dir.x == 0)
 		deltaDist->x = MAXFLOAT;
@@ -29,19 +29,19 @@ static t_pos	init_sideDist_step(t_data *data, t_vector dir,
 {
 	t_pos	step;
 
-	if(dir.x < 0)
+	if (dir.x < 0)
 	{
 		step.x = -1;
 		sideDist->x = (int)data->player->map_pos.x % (int)WALL_SIZE
-	  		/ WALL_SIZE * deltaDist.x;
+			/ WALL_SIZE * deltaDist.x;
 	}
 	else
 	{
 		step.x = 1;
 		sideDist->x = (1 -(int)data->player->map_pos.x % (int)WALL_SIZE / WALL_SIZE)
-	  	* deltaDist.x;
+			* deltaDist.x;
 	}
-	if(dir.y < 0)
+	if (dir.y < 0)
 	{
 		step.y = -1;
 		sideDist->y = (int)data->player->map_pos.y % (int)WALL_SIZE / WALL_SIZE
@@ -84,7 +84,8 @@ static int	execute_dda(t_data *data, t_vector dir, t_vector *sideDist, t_vector 
 	return (side);
 }
 
-static void	update_raycastHit(t_raycastHit *hit, t_data *data, float angle, t_vector dir)
+static void	update_raycastHit(t_raycastHit *hit,
+	t_data *data, float angle, t_vector dir)
 {
 	hit->pos.x = data->player->map_pos.x;
 	hit->pos.y = data->player->map_pos.y;
@@ -99,14 +100,16 @@ static void	update_raycastHit(t_raycastHit *hit, t_data *data, float angle, t_ve
 	ft_line2(data->image.map_img,
 		MINIMAP_WIDTH2,
 		MINIMAP_WIDTH2,
-		MINIMAP_WIDTH2 + (hit->pos.x - data->player->map_pos.x) / WALL_SIZE * MINIMAP_WIDTH / (float)(MINIMAP_NB_WALL * 2),
-		MINIMAP_WIDTH2 + (hit->pos.y - data->player->map_pos.y) / WALL_SIZE * MINIMAP_WIDTH / (float)(MINIMAP_NB_WALL * 2),
+		MINIMAP_WIDTH2 + (hit->pos.x - data->player->map_pos.x)
+		/ WALL_SIZE * MINIMAP_WIDTH / (float)(MINIMAP_NB_WALL * 2),
+		MINIMAP_WIDTH2 + (hit->pos.y - data->player->map_pos.y)
+		/ WALL_SIZE * MINIMAP_WIDTH / (float)(MINIMAP_NB_WALL * 2),
 		0xFFFFFFFF);
 	hit->perpWallDist = hit->perpWallDist
 		* fabs(sin((angle - (data->player->angle * M_PI / 180))));
 }
 
-static t_side get_hit_side(int side, t_vector dir)
+static t_side	get_hit_side(int side, t_vector dir)
 {
 	if (side == 2)
 		return (DOOR_X);
@@ -131,7 +134,7 @@ t_raycastHit	raycast(t_data *data, t_vector dir, float angle)
 
 	(void)angle;
 
-	init_deltaDist(dir, &deltaDist);
+	init_deltadist(dir, &deltaDist);
 	tile_pos.x = (int)data->player->tile_pos.x;
 	tile_pos.y = (int)data->player->tile_pos.y;
 	side = execute_dda(data, dir, &sideDist, deltaDist, &tile_pos);

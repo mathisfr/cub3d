@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rectangle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:57:16 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/23 15:02:50 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:34:08 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ void	ft_rectangle(int x, int y, int sx, int sy, uint32_t color, mlx_image_t *ima
 	}
 }
 
-static int minimap_distance(int x, int y)
+static int	minimap_distance(int x, int y)
 {
-	return ((int)sqrt(pow(abs(y - MINIMAP_WIDTH2), 2) + pow(abs(x - MINIMAP_WIDTH2), 2)));
+	return ((int)sqrt(pow(abs(y - MINIMAP_WIDTH2), 2)
+			+ pow(abs(x - MINIMAP_WIDTH2), 2)));
 }
 
 void	ft_minimap_rectangle(int x, int y, int sx, int sy, uint32_t color, mlx_image_t *image)

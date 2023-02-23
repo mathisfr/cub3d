@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_line.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:18:11 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/23 15:22:07 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:29:49 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void ft_line(mlx_image_t *img, int begin_x, int begin_y, int end_x, int end_y, uint32_t color)
 {
-	double delta_x;
-	double delta_y;
-	double pixel_x;
-	double pixel_y;
-	int pixels;
+	double	delta_x;
+	double	delta_y;
+	double	pixel_x;
+	double	pixel_y;
+	int		pixels;
 
 	delta_x = end_x - begin_x;
 	delta_y = end_y - begin_y;
@@ -61,7 +61,6 @@ void	ft_line2(mlx_image_t *img, int begin_x, int begin_y, int end_x, int end_y, 
 		pixel_y += delta_y;
 		if (color >> 24 == 1)
 			return ;
-		//color -= 16777216;
 		--pixels;
 		i--;
 	}

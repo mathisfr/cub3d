@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_movement.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:02:14 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 17:40:00 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:25:28 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_vector_rotation(t_vector *vec, float angle)
 	float		sina;
 
 	while (angle < 0)
-		angle += 360; 
+		angle += 360;
 	angle = angle * (M_PI / 180);
 	cosa = cos(angle);
 	sina = sin(angle);

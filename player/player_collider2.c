@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_collider2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:37:59 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 17:52:39 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:26:57 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	update_player_collider(t_player *player, t_map *map,
 	(void) force_update;
 	ft_lstclear(&(player->collider.all_tiles), free);
 	player->collider.all_tiles = get_all_tiles(player);
-	//opti : check if all_tiles and output of all_tiles differ
 	player->collider.max.x = 0;
 	player->collider.max.y = 0;
 	player->collider.min.x = 0;
@@ -94,7 +93,6 @@ static t_bool	has_horizontal_collision(t_player *player)
 
 void	handle_player_collision(t_player *player)
 {
-	//printf("max.x : %f max.y : %f\nmin.x : %f min.y : %f\n\n", player->collider.max.x, player->collider.max.y, player->collider.min.x, player->collider.min.y);
 	if (player->movement.y != 0)
 	{
 		if (has_vertical_collision(player))
@@ -107,7 +105,7 @@ void	handle_player_collision(t_player *player)
 	}
 }
 
-t_bool has_collider(char type)
+t_bool	has_collider(char type)
 {
 	if (type == '1' || type == '2')
 		return (TRUE);

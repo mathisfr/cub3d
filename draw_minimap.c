@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 18:14:20 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 15:36:22 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:28:08 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static int	get_tile_type(t_data *data, int x, int y)
 	return (data->map->map_arr[y][x] - '0');
 }
 
-static void	draw_minimap_wall(t_data *data, int tile_pos_x, int tile_pos_y, int type)
+static void	draw_minimap_wall(t_data *data,
+	int tile_pos_x, int tile_pos_y, int type)
 {
 	int	x;
 	int	y;
@@ -54,7 +55,7 @@ void	draw_minimap(t_data *data)
 {
 	int	x;
 	int	y;
-	
+
 	y = data->player->tile_pos.y - MINIMAP_NB_WALL;
 	while (y < data->player->tile_pos.y + MINIMAP_NB_WALL + 1)
 	{
@@ -66,5 +67,6 @@ void	draw_minimap(t_data *data)
 		}
 		y++;
 	}
-	circleBres(MINIMAP_WIDTH2, MINIMAP_WIDTH2, 5, 0xFF0000FF, data->image.map_img);
+	ft_circle(MINIMAP_WIDTH2, MINIMAP_WIDTH2,
+		5, 0xFF0000FF, data->image.map_img);
 }

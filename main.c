@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:59:09 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 18:07:56 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:33:35 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,57 +14,64 @@
 #include <stdlib.h>
 #include "cub3d.h"
 
-void look_mouse(double xpos, double ypos, void *param)
+void	look_mouse(double xpos, double ypos, void *param)
 {
-	t_data *data;
+	t_data	*data;
 
 	(void) ypos;
 	data = (t_data *)param;
 	if (xpos > 0 && xpos < WINDOW_WIDTH && xpos != WINDOW_WIDTH / 2)
 	{
 		if (xpos > WINDOW_WIDTH / 2)
-			data->player->angle += ((xpos - (WINDOW_WIDTH / 2)) * SENSITIVITY * data->delta_time * 20.0);
+			data->player->angle += ((xpos - (WINDOW_WIDTH / 2))
+					* SENSITIVITY * data->delta_time * 20.0);
 		else if (xpos < WINDOW_WIDTH / 2)
-			data->player->angle -= (((WINDOW_WIDTH / 2) - xpos) * SENSITIVITY * data->delta_time * 20.0);
+			data->player->angle -= (((WINDOW_WIDTH / 2) - xpos)
+					* SENSITIVITY * data->delta_time * 20.0);
 		mlx_set_mouse_pos(data->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	}
 }
 
 void	doors_manager(char door, char state, t_data *data)
 {
+	int	posy;
+	int	posx;
+
+	posy = data->player->tile_pos.y;
+	posx = data->player->tile_pos.x;
 	if (data->player->angle > 315 || data->player->angle < 45)
 	{
-		if (data->map->map_arr[data->player->tile_pos.y - 1][data->player->tile_pos.x] == door)
-			data->map->map_arr[data->player->tile_pos.y - 1][data->player->tile_pos.x] = state;
-		else if (data->map->map_arr[data->player->tile_pos.y - 1][data->player->tile_pos.x] == state)
-			data->map->map_arr[data->player->tile_pos.y - 1][data->player->tile_pos.x] = door;
+		if (data->map->map_arr[posy - 1][posx] == door)
+			data->map->map_arr[posy - 1][posx] = state;
+		else if (data->map->map_arr[posy - 1][posx] == state)
+			data->map->map_arr[posy - 1][posx] = door;
 	}
 	if (data->player->angle > 45 && data->player->angle < 135)
 	{
-		if (data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x + 1] == door)
-			data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x + 1] = state;
-		else if (data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x + 1] == state)
-			data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x + 1] = door;
+		if (data->map->map_arr[posy][posx + 1] == door)
+			data->map->map_arr[posy][posx + 1] = state;
+		else if (data->map->map_arr[posy][posx + 1] == state)
+			data->map->map_arr[posy][posx + 1] = door;
 	}
 	if (data->player->angle > 135 && data->player->angle < 225)
 	{
-		if (data->map->map_arr[data->player->tile_pos.y + 1][data->player->tile_pos.x] == door)
-			data->map->map_arr[data->player->tile_pos.y + 1][data->player->tile_pos.x] = state;
-		else if (data->map->map_arr[data->player->tile_pos.y + 1][data->player->tile_pos.x] == state)
-			data->map->map_arr[data->player->tile_pos.y + 1][data->player->tile_pos.x] = door;
+		if (data->map->map_arr[posy + 1][posx] == door)
+			data->map->map_arr[posy + 1][posx] = state;
+		else if (data->map->map_arr[posy + 1][posx] == state)
+			data->map->map_arr[posy + 1][posx] = door;
 	}
 	if (data->player->angle > 225 && data->player->angle < 315)
 	{
-		if (data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x - 1] == door)
-			data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x - 1] = state;
-		else if (data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x - 1] == state)
-			data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x - 1] = door;
+		if (data->map->map_arr[posy][posx - 1] == door)
+			data->map->map_arr[posy][posx - 1] = state;
+		else if (data->map->map_arr[posy][posx - 1] == state)
+			data->map->map_arr[posy][posx - 1] = door;
 	}
 }
 
-void key_action(mlx_key_data_t keydata, void *param)
+void	key_action(mlx_key_data_t keydata, void *param)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = (t_data *)param;
 	if (keydata.action == MLX_PRESS
@@ -78,17 +85,18 @@ void key_action(mlx_key_data_t keydata, void *param)
 		data->key_action = FALSE;
 }
 
-void mouse_action(mouse_key_t button, action_t action, modifier_key_t mods, void* param)
+void	mouse_action(mouse_key_t button, action_t action,
+	modifier_key_t mods, void *param)
 {
-	t_data *data;
+	t_data	*data;
 
 	(void) mods;
 	data = (t_data *)param;
-	if (button == MLX_MOUSE_BUTTON_LEFT &&
-		action == MLX_PRESS)
+	if (button == MLX_MOUSE_BUTTON_LEFT
+		&& action == MLX_PRESS)
 		data->key_action = TRUE;
-	else if (button == MLX_MOUSE_BUTTON_LEFT &&
-		action == MLX_RELEASE)
+	else if (button == MLX_MOUSE_BUTTON_LEFT
+		&& action == MLX_RELEASE)
 		data->key_action = FALSE;
 }
 
@@ -97,16 +105,18 @@ void	start_mlx(t_data *data)
 	data->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D", FALSE);
 	if (!data->mlx)
 		system_error("MLX ERROR");
-	data->image.map_img = mlx_new_image(data->mlx, MINIMAP_WIDTH, MINIMAP_WIDTH);
+	data->image.map_img = mlx_new_image(data->mlx,
+			MINIMAP_WIDTH, MINIMAP_WIDTH);
 	data->image._3d = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	data->image.background = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	data->image.background = mlx_new_image(data->mlx,
+			WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->key_action = FALSE;
 	data->anim_state = FALSE;
 	data->texture.door = mlx_load_png("./textures/door.png");
-
-	ft_rectangle(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT / 2, data->ceiling_color, data->image.background);
-	ft_rectangle(0, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT, data->floor_color, data->image.background);
-
+	ft_rectangle(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT / 2,
+		data->ceiling_color, data->image.background);
+	ft_rectangle(0, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT,
+		data->floor_color, data->image.background);
 	mlx_image_to_window(data->mlx, data->image.background, 0, 0);
 	mlx_image_to_window(data->mlx, data->image._3d, 0, 0);
 	mlx_image_to_window(data->mlx, data->image.map_img,

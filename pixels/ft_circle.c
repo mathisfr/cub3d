@@ -6,13 +6,13 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:45:46 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/13 15:47:52 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:28:44 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	drawCircle(int xc, int yc, int x, int y,
+void	drawcircle(int xc, int yc, int x, int y,
 	uint32_t color, mlx_image_t *image)
 {
 	ft_pixel_put(image, xc + x, yc + y, color);
@@ -25,7 +25,7 @@ void	drawCircle(int xc, int yc, int x, int y,
 	ft_pixel_put(image, xc - y, yc - x, color);
 }
 
-void	circleBres(int xc, int yc, int r, uint32_t color, mlx_image_t *image)
+void	ft_circle(int xc, int yc, int r, uint32_t color, mlx_image_t *image)
 {
 	int	x;
 	int	y;
@@ -34,7 +34,7 @@ void	circleBres(int xc, int yc, int r, uint32_t color, mlx_image_t *image)
 	x = 0;
 	y = r;
 	d = 3 - 2 * r;
-	drawCircle(xc, yc, x, y, color, image);
+	drawcircle(xc, yc, x, y, color, image);
 	while (y >= x)
 	{
 		x++;
@@ -45,6 +45,6 @@ void	circleBres(int xc, int yc, int r, uint32_t color, mlx_image_t *image)
 		}
 		else
 			d = d + 4 * x + 6;
-		drawCircle(xc, yc, x, y, color, image);
+		drawcircle(xc, yc, x, y, color, image);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_collider.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:43:54 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 15:34:07 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:26:33 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ static t_bool	check_tile_pos2(t_player *player, t_tile_pos tile_pos)
 		&& map_pos_to_tile_pos(v_pos(player->map_pos.x - PL_HITBOX2,
 				player->map_pos.y)).x != player->tile_pos.x)
 		return (TRUE);
-	if (tile_pos == L && map_pos_to_tile_pos(v_pos(player->map_pos.x - PL_HITBOX2,
+	if (tile_pos == L
+		&& map_pos_to_tile_pos(v_pos(player->map_pos.x - PL_HITBOX2,
 				player->map_pos.y)).x != player->tile_pos.x)
 		return (TRUE);
 	return (FALSE);
 }
 
-//check the desired tile_pos which is one of the 8 adjacent tile to see if the player is inside that tile
+//check the desired tile_pos which is one of the
+// 8 adjacent tile to see if the player is inside that tile
 static t_bool	check_tile_pos(t_player *player, t_tile_pos t_p)
 {
 	if (t_p == TL && map_pos_to_tile_pos(v_pos(player->map_pos.x - PL_HITBOX2,
@@ -83,7 +85,8 @@ static void	add_tile_to_list(t_player *player,
 	ft_lstadd_back(output, t);
 }
 
-//Set the max and min value if adjacent tester tile is a wall (only set if it's unset)
+//Set the max and min value if adjacent
+//tester tile is a wall (only set if it's unset)
 void	set_max_and_min(t_pos *max, t_pos *min,
 	t_map *map, t_pos tile_pos)
 {
