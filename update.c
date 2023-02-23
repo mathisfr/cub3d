@@ -6,13 +6,13 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:14:08 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 15:12:49 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:07:50 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	update_time(t_data *data)
+double	update_time(t_data *data)
 {
 	static double	last_update;
 	double			time;
@@ -28,6 +28,7 @@ static void	update_time(t_data *data)
 		data->delta_time = time - last_update;
 		last_update = time;
 	}
+	return (time);
 }
 
 static void	handle_input(t_data *data)
@@ -112,11 +113,13 @@ static void	handle_raycast(t_data *data)
 void update(void* param)
 {
 	t_data	*data;
+	double	time;
 
 	data = param;
-	update_time(data);
+	time = update_time(data);
 	//printf("deltaTime : %f\n", data->delta_time);
 	handle_input(data);
 	draw_minimap(data);
 	handle_raycast(data);
+	update_animation(data, time);
 }

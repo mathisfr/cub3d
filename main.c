@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:59:09 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 15:14:51 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:50:45 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,12 @@ void key_action(mlx_key_data_t keydata, void *param)
 	if (keydata.action == MLX_PRESS
 		&& keydata.key == MLX_KEY_ENTER)
 		doors_manager('2', '3', data);
-	if (keydata.action == MLX_PRESS
+	else if (keydata.action == MLX_PRESS
 		&& keydata.key == MLX_KEY_SPACE)
-		update_animation(data);
+		data->key_action = TRUE;
+	else if (keydata.action == MLX_RELEASE
+		&& keydata.key == MLX_KEY_SPACE)
+		data->key_action = FALSE;
 }
 
 void	start_mlx(t_data *data)
@@ -84,6 +87,8 @@ void	start_mlx(t_data *data)
 	data->image.map_img = mlx_new_image(data->mlx, MINIMAP_WIDTH, MINIMAP_WIDTH);
 	data->image._3d = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->image.background = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	data->key_action = FALSE;
+	data->anim_state = FALSE;
 
 	// Circle bres for player size on data->image.map_img
 	//circleBres(PL_HITBOX, PL_HITBOX, PL_HITBOX, 0xFF0000FF, data->image.);

@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:12:02 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 15:12:39 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:40:10 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ typedef struct s_texture
 
 typedef struct s_animate
 {
-	mlx_image_t		*img[11];
-	float			delta_time[11];
-	mlx_texture_t	*tex[11];
+	mlx_image_t		*img[10];
+	mlx_texture_t	*tex[10];
 }	t_animate;
 
 typedef struct s_image
@@ -45,6 +44,7 @@ typedef struct s_data
 	mlx_t			*mlx;
 	t_player		*player;
 	t_bool			key_action;
+	t_bool			anim_state;
 	t_map			*map;
 	t_animate		anim;
 	t_image			image;
@@ -63,9 +63,10 @@ void	parse_texture_and_color(t_data *data, int fd);
 int		parse_fc_color(t_data *data, char *line);
 void	check_extension(char *line);
 void	draw_minimap(t_data *data);
+double	update_time(t_data *data);
 
 // animate
 void	init_animation(t_data *data);
-void	update_animation(t_data *data);
+void	update_animation(t_data *data, double time);
 
 #endif

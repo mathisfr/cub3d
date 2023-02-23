@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:17:12 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/23 14:39:34 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:13:04 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	init_animation(t_data *data)
 	data->anim.tex[7] = mlx_load_png("./textures/animate/doom_7.png");
 	data->anim.tex[8] = mlx_load_png("./textures/animate/doom_8.png");
 	data->anim.tex[9] = mlx_load_png("./textures/animate/doom_9.png");
-	data->anim.tex[10] = mlx_load_png("./textures/animate/doom_10.png");
 	data->anim.img[0] = mlx_texture_to_image(data->mlx, data->anim.tex[0]);
 	data->anim.img[1] = mlx_texture_to_image(data->mlx, data->anim.tex[1]);
 	data->anim.img[2] = mlx_texture_to_image(data->mlx, data->anim.tex[2]);
@@ -53,6 +52,5 @@ void	init_animation(t_data *data)
 	data->anim.img[7] = mlx_texture_to_image(data->mlx, data->anim.tex[7]);
 	data->anim.img[8] = mlx_texture_to_image(data->mlx, data->anim.tex[8]);
 	data->anim.img[9] = mlx_texture_to_image(data->mlx, data->anim.tex[9]);
-	data->anim.img[10] = mlx_texture_to_image(data->mlx, data->anim.tex[10]);
 	load_animation(data);
 }
