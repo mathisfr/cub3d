@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:14:08 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 18:08:17 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:12:49 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ static void	handle_raycast(t_data *data)
 	float		angle;
 	float		angle_increment;
 
-	ft_memset(data->image.line->pixels, 1, data->image.line->width * data->image.line->height * sizeof(int32_t));
-
 	v.x = 0;
 	v.y = -1;
 	ft_vector_rotation(&v, (float)data->player->angle);
@@ -119,5 +117,6 @@ void update(void* param)
 	update_time(data);
 	//printf("deltaTime : %f\n", data->delta_time);
 	handle_input(data);
+	draw_minimap(data);
 	handle_raycast(data);
 }

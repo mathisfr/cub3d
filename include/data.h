@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:12:02 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 14:52:57 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:12:39 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ typedef struct s_animate
 
 typedef struct s_image
 {
-	mlx_image_t		*player;
 	mlx_image_t 	*_3d;
 	mlx_image_t 	*background;
-	mlx_image_t		*line;
 	mlx_image_t		*map_img;
 }	t_image;
 
@@ -64,6 +62,7 @@ int		parse_texture(t_data *data, char *line);
 void	parse_texture_and_color(t_data *data, int fd);
 int		parse_fc_color(t_data *data, char *line);
 void	check_extension(char *line);
+void	draw_minimap(t_data *data);
 
 // animate
 void	init_animation(t_data *data);
