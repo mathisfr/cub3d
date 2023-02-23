@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:58:58 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 17:18:52 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:43:24 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,17 @@ static void	update_raycastHit(t_raycastHit *hit, t_data *data, float angle, t_ve
 
 static t_side get_hit_side(int side, t_vector dir)
 {
-	if (side > 1)
-		return (DOOR);
+	if (side == 2)
+		return (DOOR_X);
+	if (side == 3)
+		return (DOOR_Y);
 	if (side == 0 && dir.x > 0)
 		return (LEFT);
-	else if (side == 0 && dir.x < 0)
+	if (side == 0 && dir.x < 0)
 		return (RIGHT);
-	else if (side == 1 && dir.y > 0)
+	if (side == 1 && dir.y > 0)
 		return (BOTTOM);
-	else
-		return (TOP);
+	return (TOP);
 }
 
 t_raycastHit	raycast(t_data *data, t_vector dir, float angle)

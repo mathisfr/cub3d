@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:41:15 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/23 17:42:59 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:44:49 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	drawvline(int start, int end, int x, t_data *data, t_raycastHit *ray)
 	if (ray->side == DOOR_X ||ray->side == DOOR_Y )
 	{
 		texture = data->texture.door;
-		if (ray->side == DOOR_X)
+		if (ray->side == DOOR_Y)
 			pos = ray->pos.x;
-		else if (ray->side == DOOR_Y)
+		else if (ray->side == DOOR_X)
 			pos = ray->pos.y;
 	}
 	else if (ray->side == TOP || ray->side == BOTTOM)

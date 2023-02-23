@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:20:59 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/21 16:43:09 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:23:11 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	parse_texture_and_color(t_data *data, int fd)
 	{
 		nb_data_parsed += check_line(data, tmp_line);
 		free(tmp_line);
-		tmp_line = get_next_line(fd);
+		if (nb_data_parsed < 6)
+			tmp_line = get_next_line(fd);
 	}
 	if (nb_data_parsed != 6)
 		parsing_error("Failed to initialize all value from the input file");
