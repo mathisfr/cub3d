@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:56:10 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 18:27:06 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:43:42 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	update_player(t_player *player, t_map *map)
 		player->angle += 360;
 	while (player->angle >= 360)
 		player->angle -= 360;
-
 	if (player->movement.x != 0 || player->movement.y != 0)
 	{
 		update_player_collider(player, map, FALSE);

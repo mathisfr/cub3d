@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:14:01 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 18:25:35 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:41:51 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ typedef struct s_vector
 
 typedef enum e_side {LEFT, RIGHT, TOP, BOTTOM, DOOR_X, DOOR_Y}	t_side;
 
-typedef struct	s_raycastHit
+typedef struct s_raycastHit
 {
 	t_vector		pos;
-	float			perpWallDist;
+	float			perp_wall_dist;
 	t_side			side;
 }	t_raycastHit;
 
@@ -38,11 +38,11 @@ typedef struct s_pos
 
 t_vector	tile_pos_to_map_pos(t_pos tile_pos);
 t_pos		map_pos_to_tile_pos(t_vector map_pos);
-t_pos	pos(float x, float y);
-t_vector v_pos(float x, float y);
-t_pos	*ptr_pos(float x, float y);
+t_pos		pos(float x, float y);
+t_vector	v_pos(float x, float y);
+t_pos		*ptr_pos(float x, float y);
 t_vector	normalize_vector(t_vector v);
-void	ft_vector_rotation(t_vector *vec, float angle);
-float inv_sqrt(float x);
+void		ft_vector_rotation(t_vector *vec, float angle);
+float		inv_sqrt(float x);
 
 #endif

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:12:02 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 17:28:30 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:41:12 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_H
-#define DATA_H
+# define DATA_H
 
-#include "player.h"
-#include "map.h"
-#include "MLX42/MLX42.h"
+# include "player.h"
+# include "map.h"
+# include "MLX42/MLX42.h"
 
 typedef struct s_texture
 {
@@ -34,11 +34,10 @@ typedef struct s_animate
 
 typedef struct s_image
 {
-	mlx_image_t 	*_3d;
-	mlx_image_t 	*background;
+	mlx_image_t		*_3d;
+	mlx_image_t		*background;
 	mlx_image_t		*map_img;
 }	t_image;
-
 
 typedef struct s_data
 {
