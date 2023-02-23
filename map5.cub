@@ -1,7 +1,7 @@
-NO ./textures/truc.png
-SO ./textures/brick.png
-WE ./textures/veg.png
-EA ./textures/other.png
+NO ./textures/north.png
+SO ./textures/sud.png
+WE ./textures/ouest.png
+EA ./textures/est.png
 
 F 0,180,0
 C 0,191,255

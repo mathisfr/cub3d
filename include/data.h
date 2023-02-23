@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:12:02 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 16:40:10 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:28:30 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 typedef struct s_texture
 {
+	mlx_texture_t	*door;
 	mlx_texture_t	*wall_n;
 	mlx_texture_t	*wall_s;
 	mlx_texture_t	*wall_e;

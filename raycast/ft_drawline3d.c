@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:41:15 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/22 17:16:22 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:44:49 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	getpixelpos(int pos, int wall_size)
 	float tmp = pos % (int)WALL_SIZE;
 	tmp *= (float)wall_size / WALL_SIZE;
 	return tmp;
-	//return ((int)(((int)x % (int)WALL_SIZE) * (WALL_SIZE / (float)wall_size)));
 }
 
 void	cleanline(int start, int end, int x, mlx_image_t *img)
@@ -48,14 +47,24 @@ void	drawvline(int start, int end, int x, t_data *data, t_raycastHit *ray)
 
 
 	y = 0;
-	if (ray->side == TOP || ray->side == BOTTOM)
+	pos = 0;
+	texture = NULL;
+	if (ray->side == DOOR_X ||ray->side == DOOR_Y )
+	{
+		texture = data->texture.door;
+		if (ray->side == DOOR_Y)
+			pos = ray->pos.x;
+		else if (ray->side == DOOR_X)
+			pos = ray->pos.y;
+	}
+	else if (ray->side == TOP || ray->side == BOTTOM)
 	{
 		pos = ray->pos.x;
 		texture = data->texture.wall_n;
 		if (ray->side == BOTTOM)
 			texture = data->texture.wall_s;
 	}
-	if (ray->side == LEFT || ray->side == RIGHT)
+	else if (ray->side == LEFT || ray->side == RIGHT)
 	{
 		pos = ray->pos.y;
 		texture = data->texture.wall_o;

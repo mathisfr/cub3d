@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:59:09 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 17:58:09 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:07:56 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,27 @@ void key_action(mlx_key_data_t keydata, void *param)
 
 	data = (t_data *)param;
 	if (keydata.action == MLX_PRESS
-		&& keydata.key == MLX_KEY_ENTER)
+		&& (keydata.key == MLX_KEY_SPACE))
 		doors_manager('2', '3', data);
 	else if (keydata.action == MLX_PRESS
-		&& keydata.key == MLX_KEY_SPACE)
+		&& keydata.key == MLX_KEY_LEFT_SHIFT)
 		data->key_action = TRUE;
 	else if (keydata.action == MLX_RELEASE
-		&& keydata.key == MLX_KEY_SPACE)
+		&& keydata.key == MLX_KEY_LEFT_SHIFT)
+		data->key_action = FALSE;
+}
+
+void mouse_action(mouse_key_t button, action_t action, modifier_key_t mods, void* param)
+{
+	t_data *data;
+
+	(void) mods;
+	data = (t_data *)param;
+	if (button == MLX_MOUSE_BUTTON_LEFT &&
+		action == MLX_PRESS)
+		data->key_action = TRUE;
+	else if (button == MLX_MOUSE_BUTTON_LEFT &&
+		action == MLX_RELEASE)
 		data->key_action = FALSE;
 }
 
@@ -88,9 +102,7 @@ void	start_mlx(t_data *data)
 	data->image.background = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->key_action = FALSE;
 	data->anim_state = FALSE;
-
-	// Circle bres for player size on data->image.map_img
-	//circleBres(PL_HITBOX, PL_HITBOX, PL_HITBOX, 0xFF0000FF, data->image.);
+	data->texture.door = mlx_load_png("./textures/door.png");
 
 	ft_rectangle(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT / 2, data->ceiling_color, data->image.background);
 	ft_rectangle(0, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT, data->floor_color, data->image.background);
@@ -103,6 +115,7 @@ void	start_mlx(t_data *data)
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
 	mlx_set_mouse_pos(data->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	mlx_key_hook(data->mlx, key_action, data);
+	mlx_mouse_hook(data->mlx, mouse_action, data);
 	mlx_cursor_hook(data->mlx, look_mouse, data);
 
 	mlx_loop_hook(data->mlx, &update, data);
@@ -112,6 +125,7 @@ void	start_mlx(t_data *data)
 int32_t	main(int argc, char **argv)
 {
 	t_data		*data;
+
 	if (argc != 2)
 	{
 		ft_printf_error("ERROR: Wrong argument count\n");
