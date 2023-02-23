@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:14:01 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 17:12:40 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:42:33 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_vector
 	float	y;
 }	t_vector;
 
-typedef enum e_side {LEFT, RIGHT, TOP, BOTTOM, DOOR}	t_side;
+typedef enum e_side {LEFT, RIGHT, TOP, BOTTOM, DOOR_X, DOOR_Y}	t_side;
 
 typedef struct	s_raycastHit
 {

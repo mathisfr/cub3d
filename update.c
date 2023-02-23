@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:14:08 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 17:06:01 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:40:22 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,15 @@ double	update_time(t_data *data)
 	return (time);
 }
 
-static void	handle_input(t_data *data)
+static t_bool	handle_input(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
+	{
 		mlx_close_window(data->mlx);
+		return (FALSE);
+	}
 	ft_movement(data);
+	return (TRUE);
 }
 
 static void	render(t_data *data, t_raycastHit hit, int x)
@@ -118,7 +122,8 @@ void update(void* param)
 	data = param;
 	time = update_time(data);
 
-	handle_input(data);
+	if (!handle_input(data))
+		return ;
 	draw_minimap(data);
 	handle_raycast(data);
 	update_animation(data, time);

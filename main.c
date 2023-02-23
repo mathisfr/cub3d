@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:59:09 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 16:50:45 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:41:23 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ int32_t	main(int argc, char **argv)
 	}
 	data = init_data(argv[1]);
 	start_mlx(data);
-	mlx_terminate(data->mlx);
 	free_data(data);
 	return (EXIT_SUCCESS);
 }

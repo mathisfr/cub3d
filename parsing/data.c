@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:51:18 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 12:12:29 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:42:20 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,26 @@ static int	open_file(char *filepath)
 	return (fd);
 }
 
+void	free_structs(mlx_t *mlx, t_animate *anim, t_image *img, t_texture *tex)
+{
+	int	i;
+
+	i = 0;
+	while (i < 10)
+	{
+		mlx_delete_image(mlx, anim->img[i]);
+		mlx_delete_texture(anim->tex[i]);
+		i++;
+	}
+	mlx_delete_image(mlx, img->background);
+	mlx_delete_image(mlx, img->map_img);
+	mlx_delete_image(mlx, img->_3d);
+	mlx_delete_texture(tex->wall_e);
+	mlx_delete_texture(tex->wall_n);
+	mlx_delete_texture(tex->wall_o);
+	mlx_delete_texture(tex->wall_s);
+}
+
 //Free data (must be updated with all mlx image maybe ?)
 void	free_data(t_data *data)
 {
@@ -35,6 +55,8 @@ void	free_data(t_data *data)
 		free(data->map->map_arr[i]);
 	free(data->map->map_arr);
 	free(data->map);
+	ft_lstclear(&(data->player->collider.all_tiles), free);
+	free_structs(data->mlx, &(data->anim), &(data->image), &(data->texture));
 	free(data->player);
 	mlx_terminate(data->mlx);
 	free(data);
