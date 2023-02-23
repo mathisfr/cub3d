@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:14:01 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 17:42:33 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:25:35 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ t_vector v_pos(float x, float y);
 t_pos	*ptr_pos(float x, float y);
 t_vector	normalize_vector(t_vector v);
 void	ft_vector_rotation(t_vector *vec, float angle);
-float InvSqrt(float x);
+float inv_sqrt(float x);
 
 #endif

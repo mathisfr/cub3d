@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:58:58 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 18:23:49 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:37:20 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init_deltadist(t_vector dir, t_vector *deltaDist)
 		deltaDist->y = fabs(1.0 / dir.y);
 }
 
-static t_pos	init_sideDist_step(t_data *data, t_vector dir,
+static t_pos	init_sidedist_step(t_data *data, t_vector dir,
 	t_vector *sideDist, t_vector deltaDist)
 {
 	t_pos	step;
@@ -38,8 +38,8 @@ static t_pos	init_sideDist_step(t_data *data, t_vector dir,
 	else
 	{
 		step.x = 1;
-		sideDist->x = (1 -(int)data->player->map_pos.x % (int)WALL_SIZE / WALL_SIZE)
-			* deltaDist.x;
+		sideDist->x = (1 -(int)data->player->map_pos.x % (int)WALL_SIZE
+				/ WALL_SIZE) * deltaDist.x;
 	}
 	if (dir.y < 0)
 	{
@@ -50,18 +50,19 @@ static t_pos	init_sideDist_step(t_data *data, t_vector dir,
 	else
 	{
 		step.y = 1;
-		sideDist->y = (1 - (int)data->player->map_pos.y % (int)WALL_SIZE / WALL_SIZE)
-			* deltaDist.y;
+		sideDist->y = (1 - (int)data->player->map_pos.y % (int)WALL_SIZE
+				/ WALL_SIZE) * deltaDist.y;
 	}
 	return (step);
 }
 
-static int	execute_dda(t_data *data, t_vector dir, t_vector *sideDist, t_vector deltaDist, t_pos *tile_pos)
+static int	execute_dda(t_data *data, t_vector dir,
+	t_vector *sideDist, t_vector deltaDist, t_pos *tile_pos)
 {
 	t_pos	step;
 	int		side;
 
-	step = init_sideDist_step(data, dir, sideDist, deltaDist);
+	step = init_sidedist_step(data, dir, sideDist, deltaDist);
 	while (1)
 	{
 		if (sideDist->x < sideDist->y)
@@ -84,8 +85,8 @@ static int	execute_dda(t_data *data, t_vector dir, t_vector *sideDist, t_vector 
 	return (side);
 }
 
-static void	update_raycastHit(t_raycastHit *hit,
-	t_data *data, float angle, t_vector dir)
+static void	update_raycasthit(t_raycastHit *hit, t_data *data,
+	float angle, t_vector dir)
 {
 	hit->pos.x = data->player->map_pos.x;
 	hit->pos.y = data->player->map_pos.y;
@@ -100,10 +101,10 @@ static void	update_raycastHit(t_raycastHit *hit,
 	ft_line2(data->image.map_img,
 		MINIMAP_WIDTH2,
 		MINIMAP_WIDTH2,
-		MINIMAP_WIDTH2 + (hit->pos.x - data->player->map_pos.x)
-		/ WALL_SIZE * MINIMAP_WIDTH / (float)(MINIMAP_NB_WALL * 2),
-		MINIMAP_WIDTH2 + (hit->pos.y - data->player->map_pos.y)
-		/ WALL_SIZE * MINIMAP_WIDTH / (float)(MINIMAP_NB_WALL * 2),
+		MINIMAP_WIDTH2 + ((hit->pos.x - data->player->map_pos.x) / WALL_SIZE
+			* MINIMAP_WIDTH / (float)(MINIMAP_NB_WALL * 2)),
+		MINIMAP_WIDTH2 + ((hit->pos.y - data->player->map_pos.y) / WALL_SIZE
+			* MINIMAP_WIDTH / (float)(MINIMAP_NB_WALL * 2)),
 		0xFFFFFFFF);
 	hit->perpWallDist = hit->perpWallDist
 		* fabs(sin((angle - (data->player->angle * M_PI / 180))));
@@ -124,25 +125,23 @@ static t_side	get_hit_side(int side, t_vector dir)
 	return (TOP);
 }
 
-t_raycastHit	raycast(t_data *data, t_vector dir, float angle)
+t_raycastHit	raycast(t_data *data, t_vector dir)
 {
 	t_raycastHit	output;
-	t_vector		deltaDist;
-	t_vector		sideDist;
+	t_vector		delta_dist;
+	t_vector		side_dist;
 	t_pos			tile_pos;
 	int				side;
 
-	(void)angle;
-
-	init_deltadist(dir, &deltaDist);
+	init_deltadist(dir, &delta_dist);
 	tile_pos.x = (int)data->player->tile_pos.x;
 	tile_pos.y = (int)data->player->tile_pos.y;
-	side = execute_dda(data, dir, &sideDist, deltaDist, &tile_pos);
+	side = execute_dda(data, dir, &side_dist, delta_dist, &tile_pos);
 	if (side % 2 == 0)
-		output.perpWallDist = sideDist.x - deltaDist.x;
+		output.perpWallDist = side_dist.x - delta_dist.x;
 	else
-		output.perpWallDist = sideDist.y - deltaDist.y;
-	update_raycastHit(&output, data, atan2(dir.y, dir.x), dir);
+		output.perpWallDist = side_dist.y - delta_dist.y;
+	update_raycasthit(&output, data, atan2(dir.y, dir.x), dir);
 	output.side = get_hit_side(side, dir);
 	return (output);
 }

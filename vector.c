@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:59:24 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 15:38:56 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:22:39 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_pos	pos(float x, float y)
 	return (output);
 }
 
-t_vector v_pos(float x, float y)
+t_vector	v_pos(float x, float y)
 {
 	t_vector	output;
 
@@ -64,26 +64,4 @@ t_pos	*ptr_pos(float x, float y)
 	output->x = x;
 	output->y = y;
 	return (output);
-}
-float InvSqrt(float x){
-    float xhalf = 0.5f * x;
-    int i = *(int*)&x;            // store floating-point bits in integer
-    i = 0x5f3759df - (i >> 1);    // initial guess for Newton's method
-    x = *(float*)&i;              // convert new bits into float
-    x = x*(1.5f - xhalf*x*x);     // One round of Newton's method
-    return x;
-}
-
-t_vector	normalize_vector(t_vector v)
-{
-	float	length;
-	float	t;
-
-	length = v.x * v.x + v.y * v.y;
-	if (length == 0)
-		return (v);
-	t = InvSqrt(length);
-	v.x *= t;
-	v.y *= t;
-	return (v);
 }

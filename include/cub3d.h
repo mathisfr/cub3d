@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:14:38 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/23 18:28:08 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:37:47 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_draw_map(t_map *map, int color, mlx_image_t* img);
 void	ft_circle(int xc, int yc, int r, uint32_t color, mlx_image_t *image);
 void	ft_line(mlx_image_t *img, int begin_x, int begin_y, int end_x, int end_y, uint32_t color);
 void	ft_line2(mlx_image_t *img, int begin_x, int begin_y, int end_x, int end_y, uint32_t color);
-t_raycastHit	raycast(t_data *data, t_vector dir, float angle);
+t_raycastHit	raycast(t_data *data, t_vector dir);
 
 // player
 void	ft_movement(t_data *data);

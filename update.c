@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:14:08 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 17:40:22 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:38:22 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,12 @@ static void	render(t_data *data, t_raycastHit hit, int x)
 		x++;
 		drawloop++;
 	}
-
-	/*data->player->angle;
-	data->player->tile_pos.x;
-	data->player->tile_pos.y;*/
-	/*if (data->map->map_arr[tile_pos->y][tile_pos->x] == '2'
-		&& hit.perpWallDist < 1.5)
-	{
-		if (data->key_action == TRUE)
-		{
-			data->map->map_arr[(int)data->player->tile_pos.y][(int)data->player->tile_pos.x] = '0';
-		}
-	}*/
 }
 
 static void	handle_raycast(t_data *data)
 {
 	int			i;
-	int			width;
-	t_vector 	v;
+	t_vector	v;
 	t_vector	u;
 	float		angle;
 	float		angle_increment;
@@ -80,48 +67,26 @@ static void	handle_raycast(t_data *data)
 	v.y = -1;
 	ft_vector_rotation(&v, (float)data->player->angle);
 	i = 0;
-	width = (int)data->image._3d->width;
 	angle = -PLAYER_FOV2;
 	angle_increment = PLAYER_FOV * DOWN_SCALE / data->image._3d->width;
-	while (i < width)
+	while (i < (int)data->image._3d->width)
 	{
 		u.x = v.x;
 		u.y = v.y;
 		ft_vector_rotation(&u, angle);
 		angle += angle_increment;
-		render(data, raycast(data, u, angle * (M_PI / 180.0)), i);
+		render(data, raycast(data, u), i);
 		i += DOWN_SCALE;
 	}
 }
 
-//static void	old_raycast(t_data *data)
-//{
-//	t_vector v;
-//	t_vector u;
-//	u.x = 0;
-//	u.y = -1;
-//	ft_vector_rotation(&u, (float)data->player->angle);
-//	ft_memset(data->image.line->pixels, 1, data->image.line->width * data->image.line->height * sizeof(int32_t));
-//	float angle = -(PLAYER_FOV / 2.0);
-//	ft_memset(data->image._3d->pixels, 1, data->image._3d->width * data->image._3d->height * sizeof(int32_t));
-//	for(int i = 0; i < (int)data->image._3d->width; i += DOWN_SCALE)
-//	{
-//		v.x = u.x;
-//		v.y = u.y;
-//		angle += (PLAYER_FOV / 2.0) / (data->image._3d->width / (2 * DOWN_SCALE));
-//		ft_vector_rotation(&v, angle);
-//		draw_ray(data, data->map, data->player->map_pos, data->player->tile_pos, v, i);
-//	}
-//}
-
-void update(void* param)
+void	update(void *param)
 {
 	t_data	*data;
 	double	time;
 
 	data = param;
 	time = update_time(data);
-
 	if (!handle_input(data))
 		return ;
 	draw_minimap(data);
