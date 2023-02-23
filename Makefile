@@ -24,6 +24,7 @@ SOURCES = 	main.c \
 			parsing/parse_texture_and_color.c \
 			parsing/parse_texture.c \
 			vector.c \
+			vector2.c \
 			player/player.c \
 			player/player_collider.c \
 			player/player_collider2.c \
