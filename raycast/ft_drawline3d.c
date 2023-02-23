@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawline3d.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:41:15 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/23 18:25:20 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:41:38 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	drawline3d(t_data *data, int x, t_raycastHit *ray)
 	int	start;
 	int	end;
 
-	lineheight = (int)((float)data->image._3d->height / ray->perpWallDist);
+	lineheight = (int)((float)data->image._3d->height / ray->perp_wall_dist);
 	start = (data->image._3d->height / 2.0) - (lineheight / 2.0);
 	end = (data->image._3d->height / 2.0) + (lineheight / 2.0);
 	drawvline(start, end, x, data, ray);

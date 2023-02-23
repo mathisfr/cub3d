@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:09:48 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 15:37:10 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:41:16 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,5 @@
 # define PLAYER_SPEED 800.0
 # define PLAYER_FOV 60.0
 # define PLAYER_FOV2 30.0
-
-
-
 
 #endif

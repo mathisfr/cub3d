@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:58:58 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 18:37:20 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:41:38 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,13 @@ static void	update_raycasthit(t_raycastHit *hit, t_data *data,
 	hit->pos.x = data->player->map_pos.x;
 	hit->pos.y = data->player->map_pos.y;
 	if (dir.x < 0)
-		hit->pos.x += hit->perpWallDist * cos(angle) * WALL_SIZE;
+		hit->pos.x += hit->perp_wall_dist * cos(angle) * WALL_SIZE;
 	else
-		hit->pos.x += hit->perpWallDist * cos(angle) * WALL_SIZE;
+		hit->pos.x += hit->perp_wall_dist * cos(angle) * WALL_SIZE;
 	if (dir.y < 0)
-		hit->pos.y += hit->perpWallDist * sin(angle) * WALL_SIZE;
+		hit->pos.y += hit->perp_wall_dist * sin(angle) * WALL_SIZE;
 	else
-		hit->pos.y += hit->perpWallDist * sin(angle) * WALL_SIZE;
+		hit->pos.y += hit->perp_wall_dist * sin(angle) * WALL_SIZE;
 	ft_line2(data->image.map_img,
 		MINIMAP_WIDTH2,
 		MINIMAP_WIDTH2,
@@ -106,7 +106,7 @@ static void	update_raycasthit(t_raycastHit *hit, t_data *data,
 		MINIMAP_WIDTH2 + ((hit->pos.y - data->player->map_pos.y) / WALL_SIZE
 			* MINIMAP_WIDTH / (float)(MINIMAP_NB_WALL * 2)),
 		0xFFFFFFFF);
-	hit->perpWallDist = hit->perpWallDist
+	hit->perp_wall_dist = hit->perp_wall_dist
 		* fabs(sin((angle - (data->player->angle * M_PI / 180))));
 }
 
@@ -138,9 +138,9 @@ t_raycastHit	raycast(t_data *data, t_vector dir)
 	tile_pos.y = (int)data->player->tile_pos.y;
 	side = execute_dda(data, dir, &side_dist, delta_dist, &tile_pos);
 	if (side % 2 == 0)
-		output.perpWallDist = side_dist.x - delta_dist.x;
+		output.perp_wall_dist = side_dist.x - delta_dist.x;
 	else
-		output.perpWallDist = side_dist.y - delta_dist.y;
+		output.perp_wall_dist = side_dist.y - delta_dist.y;
 	update_raycasthit(&output, data, atan2(dir.y, dir.x), dir);
 	output.side = get_hit_side(side, dir);
 	return (output);
