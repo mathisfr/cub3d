@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:13:14 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 17:39:33 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 15:33:17 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void		handle_player_collision(t_player *player);
 void		set_max_and_min(t_pos *max, t_pos *min,
 				t_map *map, t_pos tile_pos);
 t_list		*get_all_tiles(t_player *player);
+t_bool		has_collider(char type);
 void		update_player(t_player *player, t_map *map);
 
 #endif

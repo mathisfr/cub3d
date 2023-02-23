@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:14:08 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 15:12:49 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:43:16 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void update(void* param)
 
 	data = param;
 	update_time(data);
+	printf("angle : %f\n", data->player->angle);
 	//printf("deltaTime : %f\n", data->delta_time);
 	handle_input(data);
 	draw_minimap(data);

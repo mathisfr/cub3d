@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:43:54 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 15:39:34 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 15:34:07 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,19 @@ void	set_max_and_min(t_pos *max, t_pos *min,
 	t_map *map, t_pos tile_pos)
 {
 	if (min->y == 0
-		&& (map->map_arr[(int)tile_pos.y - 1][(int)tile_pos.x] == '1'))
+		&& (has_collider(map->map_arr[(int)tile_pos.y - 1][(int)tile_pos.x])))
 		min->y = tile_pos_to_map_pos(pos(tile_pos.x,
 					tile_pos.y - 1)).y + WALL_SIZE / 2 + PL_HITBOX;
 	if (max->y == 0
-		&& (map->map_arr[(int)tile_pos.y + 1][(int)tile_pos.x] == '1'))
+		&& (has_collider(map->map_arr[(int)tile_pos.y + 1][(int)tile_pos.x])))
 		max->y = tile_pos_to_map_pos(pos(tile_pos.x,
 					tile_pos.y + 1)).y - WALL_SIZE / 2 - PL_HITBOX;
 	if (min->x == 0
-		&& (map->map_arr[(int)tile_pos.y][(int)tile_pos.x - 1] == '1'))
+		&& (has_collider(map->map_arr[(int)tile_pos.y][(int)tile_pos.x - 1])))
 		min->x = tile_pos_to_map_pos(pos(tile_pos.x - 1, tile_pos.y)).x
 			+ WALL_SIZE / 2 + PL_HITBOX;
 	if (max->x == 0
-		&& (map->map_arr[(int)tile_pos.y][(int)tile_pos.x + 1] == '1'))
+		&& (has_collider(map->map_arr[(int)tile_pos.y][(int)tile_pos.x + 1])))
 		max->x = tile_pos_to_map_pos(pos(tile_pos.x + 1, tile_pos.y)).x
 			- WALL_SIZE / 2 - PL_HITBOX;
 }

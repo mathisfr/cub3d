@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:56:10 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 16:42:15 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 15:47:43 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ t_player	*init_player(t_map *map)
 //Update player collision as well
 void	update_player(t_player *player, t_map *map)
 {
+	while (player->angle < 0)
+		player->angle += 360;
+	while (player->angle >= 360)
+		player->angle -= 360;
+
 	//printf("player map pos : %fx%fy\n", player->map_pos.x, player->map_pos.y);
 	if (player->movement.x != 0 || player->movement.y != 0)
 	{

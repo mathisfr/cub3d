@@ -1,7 +1,7 @@
-NO /Users/matfranc/Downloads/truc.png
-SO /Users/matfranc/Downloads/brick.png
-WE /Users/matfranc/Downloads/veg.png
-EA /Users/matfranc/Downloads/other.png
+NO ./textures/truc.png
+SO ./textures/brick.png
+WE ./textures/veg.png
+EA ./textures/other.png
 
 F 0,180,0
 C 0,191,255

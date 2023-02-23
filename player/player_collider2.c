@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:37:59 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 15:16:38 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 15:33:01 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,9 @@ void	handle_player_collision(t_player *player)
 	}
 }
 
-//t_bool has_collider()
+t_bool has_collider(char type)
+{
+	if (type == '1' || type == '2')
+		return (TRUE);
+	return (FALSE);
+}

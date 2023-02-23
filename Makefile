@@ -18,6 +18,7 @@ SOURCES = 	main.c \
 			parsing/map_parser.c \
 			parsing/map_parser_utils.c \
 			parsing/check_map.c \
+			parsing/check_map2.c \
 			parsing/error.c \
 			parsing/parse_fc_color.c \
 			parsing/parse_texture_and_color.c \
