@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:09:48 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 15:16:06 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:37:10 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 720
 
-# define MINIMAP_WIDTH 512
-# define MINIMAP_WIDTH2 256
-# define MINIMAP_NB_WALL 8
+# define MINIMAP_WIDTH 256
+# define MINIMAP_WIDTH2 128
+# define MINIMAP_NB_WALL 5
 
 # define WALL_SIZE 10000.0
 

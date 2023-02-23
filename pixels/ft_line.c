@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:18:11 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/23 15:08:19 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 15:22:07 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,12 @@ void	ft_line2(mlx_image_t *img, int begin_x, int begin_y, int end_x, int end_y, 
 	while (pixels && i > 0)
 	{
 		ft_pixel_put(img, pixel_x, pixel_y, color);
-		color -= 16777216;
+		color -= 16777216 * 2;
 		pixel_x += delta_x;
 		pixel_y += delta_y;
+		if (color >> 24 == 1)
+			return ;
+		//color -= 16777216;
 		--pixels;
 		i--;
 	}
