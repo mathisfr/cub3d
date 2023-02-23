@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:27:33 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/21 19:23:13 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:55:50 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,5 @@ void	check_map(t_map *map)
 	check_borders(map);
 	check_spaces(map);
 	check_player(map);
+	check_doors(map);
 }

@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:14:08 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 16:07:50 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:06:01 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void update(void* param)
 
 	data = param;
 	time = update_time(data);
-	//printf("deltaTime : %f\n", data->delta_time);
+
 	handle_input(data);
 	draw_minimap(data);
 	handle_raycast(data);

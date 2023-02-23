@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 18:14:20 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 15:10:16 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 15:36:22 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ void	draw_minimap(t_data *data)
 		}
 		y++;
 	}
-	circleBres(MINIMAP_WIDTH2, MINIMAP_WIDTH2, 10, 0xFF0000FF, data->image.map_img);
+	circleBres(MINIMAP_WIDTH2, MINIMAP_WIDTH2, 5, 0xFF0000FF, data->image.map_img);
 }
