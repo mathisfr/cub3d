@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:58:58 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 17:25:04 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/22 18:06:46 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ static int	execute_dda(t_data *data, t_vector dir, t_vector *sideDist, t_vector 
 			tile_pos->y += step.y;
 			side = 1;
 		}
-		if (data->map->map_arr[tile_pos->y][tile_pos->x] != '0')
-			break;
+		if (data->map->map_arr[tile_pos->y][tile_pos->x] == '1'
+			|| data->map->map_arr[tile_pos->y][tile_pos->x] == '2')
+			break ;
 	}
 	return (side);
 }

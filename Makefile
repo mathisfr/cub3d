@@ -27,7 +27,10 @@ SOURCES = 	main.c \
 			player/player_collider2.c \
 			player/ft_movement.c \
 			raycast/ft_drawline3d.c \
-			raycast/raycast.c
+			raycast/raycast.c \
+			animate/animate.c \
+			animate/init_animate.c \
+
 
 
 SOURCES_BONUS =

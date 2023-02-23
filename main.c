@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:59:09 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 16:12:52 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 15:10:38 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void look_mouse(double xpos, double ypos, void *param)
 {
 	t_data *data;
-	
+
 	(void) ypos;
 	data = (t_data *)param;
 	if (xpos > 0 && xpos < WINDOW_WIDTH && xpos != WINDOW_WIDTH / 2)
@@ -31,6 +31,38 @@ void look_mouse(double xpos, double ypos, void *param)
 	}
 }
 
+void	doors_manager(char door, char state, t_data *data)
+{
+	if (data->player->angle > 315 || data->player->angle < 45)
+	{
+		if (data->map->map_arr[data->player->tile_pos.y - 1][data->player->tile_pos.x] == door)
+			data->map->map_arr[data->player->tile_pos.y - 1][data->player->tile_pos.x] = state;
+		else if (data->map->map_arr[data->player->tile_pos.y - 1][data->player->tile_pos.x] == state)
+			data->map->map_arr[data->player->tile_pos.y - 1][data->player->tile_pos.x] = door;
+	}
+	if (data->player->angle > 45 && data->player->angle < 135)
+	{
+		if (data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x + 1] == door)
+			data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x + 1] = state;
+		else if (data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x + 1] == state)
+			data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x + 1] = door;
+	}
+	if (data->player->angle > 135 && data->player->angle < 225)
+	{
+		if (data->map->map_arr[data->player->tile_pos.y + 1][data->player->tile_pos.x] == door)
+			data->map->map_arr[data->player->tile_pos.y + 1][data->player->tile_pos.x] = state;
+		else if (data->map->map_arr[data->player->tile_pos.y + 1][data->player->tile_pos.x] == state)
+			data->map->map_arr[data->player->tile_pos.y + 1][data->player->tile_pos.x] = door;
+	}
+	if (data->player->angle > 225 && data->player->angle < 315)
+	{
+		if (data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x - 1] == door)
+			data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x - 1] = state;
+		else if (data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x - 1] == state)
+			data->map->map_arr[data->player->tile_pos.y][data->player->tile_pos.x - 1] = door;
+	}
+}
+
 void key_action(mlx_key_data_t keydata, void *param)
 {
 	t_data *data;
@@ -38,10 +70,10 @@ void key_action(mlx_key_data_t keydata, void *param)
 	data = (t_data *)param;
 	if (keydata.action == MLX_PRESS
 		&& keydata.key == MLX_KEY_ENTER)
-		data->key_action = true;
-	if (keydata.action == MLX_RELEASE
-		&& keydata.key == MLX_KEY_ENTER)
-		data->key_action = false;
+		doors_manager('2', '3', data);
+	if (keydata.action == MLX_PRESS
+		&& keydata.key == MLX_KEY_SPACE)
+		update_animation(data);
 }
 
 void	start_mlx(t_data *data)
@@ -54,7 +86,6 @@ void	start_mlx(t_data *data)
 	data->image._3d = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->image.background = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->image.line = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-
 	//pour l'instant un cercle
 	//circleBres(PL_HITBOX, PL_HITBOX, PL_HITBOX, 0xFF0000FF, data->image.player);
 
@@ -69,7 +100,7 @@ void	start_mlx(t_data *data)
 	//mlx_image_to_window(data->mlx, data->image.map_img, 0, 0);
 	mlx_image_to_window(data->mlx, data->image.line, 0, 0);
 	//mlx_image_to_window(data->mlx, data->image.player, WALL_SIZE * data->player->tile_pos.x, WALL_SIZE * data->player->tile_pos.y);
-
+	init_animation(data);
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
 	mlx_set_mouse_pos(data->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	mlx_key_hook(data->mlx, key_action, data);

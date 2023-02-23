@@ -6,11 +6,29 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:14:08 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/22 17:24:58 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/22 18:08:17 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	update_time(t_data *data)
+{
+	static double	last_update;
+	double			time;
+
+	if (last_update == 0)
+	{
+		last_update = mlx_get_time();
+		time = last_update;
+	}
+	else
+	{
+		time = mlx_get_time();
+		data->delta_time = time - last_update;
+		last_update = time;
+	}
+}
 
 static void	handle_input(t_data *data)
 {
@@ -30,14 +48,18 @@ static void	render(t_data *data, t_raycastHit hit, int x)
 		x++;
 		drawloop++;
 	}
-	if (data->map->map_arr[tile_pos->y][tile_pos->x] == '2'
+
+	/*data->player->angle;
+	data->player->tile_pos.x;
+	data->player->tile_pos.y;*/
+	/*if (data->map->map_arr[tile_pos->y][tile_pos->x] == '2'
 		&& hit.perpWallDist < 1.5)
 	{
 		if (data->key_action == TRUE)
 		{
 			data->map->map_arr[(int)data->player->tile_pos.y][(int)data->player->tile_pos.x] = '0';
 		}
-	}
+	}*/
 }
 
 static void	handle_raycast(t_data *data)
@@ -94,6 +116,8 @@ void update(void* param)
 	t_data	*data;
 
 	data = param;
+	update_time(data);
+	//printf("deltaTime : %f\n", data->delta_time);
 	handle_input(data);
 	handle_raycast(data);
 }
