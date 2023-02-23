@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:59:09 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 16:50:45 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:40:07 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	start_mlx(t_data *data)
 	data->image.background = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->key_action = FALSE;
 	data->anim_state = FALSE;
+	data->texture.door = mlx_load_png("./textures/door.png");
 
 	// Circle bres for player size on data->image.map_img
 	//circleBres(PL_HITBOX, PL_HITBOX, PL_HITBOX, 0xFF0000FF, data->image.);
