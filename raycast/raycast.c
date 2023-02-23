@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:58:58 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 15:37:19 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:18:52 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,10 @@ static int	execute_dda(t_data *data, t_vector dir, t_vector *sideDist, t_vector 
 			tile_pos->y += step.y;
 			side = 1;
 		}
-		if (data->map->map_arr[tile_pos->y][tile_pos->x] == '1'
-			|| data->map->map_arr[tile_pos->y][tile_pos->x] == '2')
+		if (data->map->map_arr[tile_pos->y][tile_pos->x] == '1')
 			break ;
+		if (data->map->map_arr[tile_pos->y][tile_pos->x] == '2')
+			return (2 + side);
 	}
 	return (side);
 }
@@ -105,6 +106,20 @@ static void	update_raycastHit(t_raycastHit *hit, t_data *data, float angle, t_ve
 		* fabs(sin((angle - (data->player->angle * M_PI / 180))));
 }
 
+static t_side get_hit_side(int side, t_vector dir)
+{
+	if (side > 1)
+		return (DOOR);
+	if (side == 0 && dir.x > 0)
+		return (LEFT);
+	else if (side == 0 && dir.x < 0)
+		return (RIGHT);
+	else if (side == 1 && dir.y > 0)
+		return (BOTTOM);
+	else
+		return (TOP);
+}
+
 t_raycastHit	raycast(t_data *data, t_vector dir, float angle)
 {
 	t_raycastHit	output;
@@ -119,18 +134,11 @@ t_raycastHit	raycast(t_data *data, t_vector dir, float angle)
 	tile_pos.x = (int)data->player->tile_pos.x;
 	tile_pos.y = (int)data->player->tile_pos.y;
 	side = execute_dda(data, dir, &sideDist, deltaDist, &tile_pos);
-	if (side == 0)
+	if (side % 2 == 0)
 		output.perpWallDist = sideDist.x - deltaDist.x;
 	else
 		output.perpWallDist = sideDist.y - deltaDist.y;
 	update_raycastHit(&output, data, atan2(dir.y, dir.x), dir);
-	if (side == 0 && dir.x > 0)
-		output.side = LEFT;
-	else if (side == 0 && dir.x < 0)
-		output.side = RIGHT;
-	else if (side == 1 && dir.y > 0)
-		output.side = BOTTOM;
-	else
-		output.side = TOP;
+	output.side = get_hit_side(side, dir);
 	return (output);
 }

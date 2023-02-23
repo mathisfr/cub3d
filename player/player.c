@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:56:10 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 15:47:43 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:11:21 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@ static t_bool	is_player(char c)
 	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 		return (TRUE);
 	return (FALSE);
+}
+
+static void	set_player_angle(t_player *player, char p)
+{
+	if (p == 'N')
+		player->angle = 0;
+	else if (p == 'E')
+		player->angle = 90;
+	else if (p == 'S')
+		player->angle = 180;
+	else if (p == 'W')
+		player->angle = 270;
 }
 
 //Initialize player position in the player struct
@@ -36,6 +48,7 @@ static void	set_player_pos(t_player *player, t_map *map)
 				player->tile_pos.y = y;
 				player->tile_pos.x = x;
 				player->map_pos = tile_pos_to_map_pos(player->tile_pos);
+				set_player_angle(player, map->map_arr[y][x]);
 				map->map_arr[y][x] = '0';
 				return ;
 			}
@@ -54,17 +67,6 @@ t_player	*init_player(t_map *map)
 	if (!player)
 		malloc_error();
 	set_player_pos(player, map);
-	if (map->map_arr[(int)player->tile_pos.y][(int)player->tile_pos.x] == 'N')
-		player->angle = 0;
-	else if (map->map_arr[(int)player->tile_pos.y]
-		[(int)player->tile_pos.x] == 'E')
-		player->angle = 90;
-	else if (map->map_arr[(int)player->tile_pos.y]
-		[(int)player->tile_pos.x] == 'S')
-		player->angle = 180;
-	else if (map->map_arr[(int)player->tile_pos.y]
-		[(int)player->tile_pos.x] == 'W')
-		player->angle = 270;
 	update_player_collider(player, map, TRUE);
 	return (player);
 }
