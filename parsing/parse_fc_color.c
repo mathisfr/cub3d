@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:00 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/21 16:57:43 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:44:33 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,10 @@ int	parse_fc_color(t_data *data, char *line)
 
 	check_if_valid_line(data, line);
 	i = 1;
-	printf("status before : %s\n", &(line[i]));
 	r = ft_atoi(&(line[i]));
 	if (r < 0 || r > 255)
 		parsing_error("Invalid number for red color");
 	skip_number(line, &i);
-	printf("status after : %s\n", &(line[i]));
 	g = ft_atoi(&(line[i]));
 	if (g < 0 || g > 255)
 		parsing_error("Invalid number for green color");
@@ -81,7 +79,6 @@ int	parse_fc_color(t_data *data, char *line)
 	if (b < 0 || b > 255)
 		parsing_error("Invalid number for blue color");
 	skip_number(line, &i);
-	printf("r : %d\tg : %d\tb : %d\n", r, g, b);
 	if (line[0] == 'C')
 		data->ceiling_color = r | g << 8 | b << 16 | 0xFF << 24;
 	else

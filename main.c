@@ -6,13 +6,12 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:59:09 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 17:41:23 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:58:09 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <memory.h>
 #include "cub3d.h"
 
 void look_mouse(double xpos, double ypos, void *param)
