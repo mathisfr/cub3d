@@ -6,45 +6,44 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:45:46 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/23 18:28:44 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/24 08:52:35 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	drawcircle(int xc, int yc, int x, int y,
+static void	drawcircle(t_vector start, t_vector shift,
 	uint32_t color, mlx_image_t *image)
 {
-	ft_pixel_put(image, xc + x, yc + y, color);
-	ft_pixel_put(image, xc - x, yc + y, color);
-	ft_pixel_put(image, xc + x, yc - y, color);
-	ft_pixel_put(image, xc - x, yc - y, color);
-	ft_pixel_put(image, xc + y, yc + x, color);
-	ft_pixel_put(image, xc - y, yc + x, color);
-	ft_pixel_put(image, xc + y, yc - x, color);
-	ft_pixel_put(image, xc - y, yc - x, color);
+	ft_pixel_put(image, start.x + shift.x, start.y + shift.y, color);
+	ft_pixel_put(image, start.x - shift.x, start.y + shift.y, color);
+	ft_pixel_put(image, start.x + shift.x, start.y - shift.y, color);
+	ft_pixel_put(image, start.x - shift.x, start.y - shift.y, color);
+	ft_pixel_put(image, start.x + shift.y, start.y + shift.x, color);
+	ft_pixel_put(image, start.x - shift.y, start.y + shift.x, color);
+	ft_pixel_put(image, start.x + shift.y, start.y - shift.x, color);
+	ft_pixel_put(image, start.x - shift.y, start.y - shift.x, color);
 }
 
-void	ft_circle(int xc, int yc, int r, uint32_t color, mlx_image_t *image)
+void	ft_circle(t_vector vec, int r, uint32_t color, mlx_image_t *image)
 {
-	int	x;
-	int	y;
-	int	d;
+	t_vector	shift;
+	int			d;
 
-	x = 0;
-	y = r;
+	shift.x = 0;
+	shift.y = r;
 	d = 3 - 2 * r;
-	drawcircle(xc, yc, x, y, color, image);
-	while (y >= x)
+	drawcircle(vec, shift, color, image);
+	while (shift.y >= shift.x)
 	{
-		x++;
+		shift.x = shift.x + 1;
 		if (d > 0)
 		{
-			y--;
-			d = d + 4 * (x - y) + 10;
+			shift.y = shift.y - 1;
+			d = d + 4 * (shift.x - shift.y) + 10;
 		}
 		else
-			d = d + 4 * x + 6;
-		drawcircle(xc, yc, x, y, color, image);
+			d = d + 4 * shift.x + 6;
+		drawcircle(vec, shift, color, image);
 	}
 }

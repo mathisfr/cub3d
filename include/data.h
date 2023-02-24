@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:12:02 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 18:41:12 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/24 09:24:00 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_data
 t_data	*init_data(char *filename);
 void	free_data(t_data *data);
 void	drawline3d(t_data *data, int x, t_raycastHit *ray);
-void	ft_line2(mlx_image_t *img, int begin_x, int begin_y, int end_x, int end_y, uint32_t color);
 int		parse_texture(t_data *data, char *line);
 void	parse_texture_and_color(t_data *data, int fd);
 int		parse_fc_color(t_data *data, char *line);

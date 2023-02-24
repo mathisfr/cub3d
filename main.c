@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:59:09 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 18:33:35 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/24 10:01:35 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,24 @@ void	mouse_action(mouse_key_t button, action_t action,
 		data->key_action = FALSE;
 }
 
+void	set_background(t_data *data)
+{
+	t_vector	start;
+	t_vector	end;
+
+	start.x = 0;
+	start.y = 0;
+	end.x = WINDOW_WIDTH;
+	end.y = WINDOW_HEIGHT / 2;
+	ft_rectangle(start, end,
+		data->ceiling_color, data->image.background);
+	start.y = WINDOW_HEIGHT / 2;
+	end.y = WINDOW_HEIGHT;
+	ft_rectangle(start, end,
+		data->floor_color, data->image.background);
+	mlx_image_to_window(data->mlx, data->image.background, 0, 0);
+}
+
 void	start_mlx(t_data *data)
 {
 	data->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D", FALSE);
@@ -113,11 +131,7 @@ void	start_mlx(t_data *data)
 	data->key_action = FALSE;
 	data->anim_state = FALSE;
 	data->texture.door = mlx_load_png("./textures/door.png");
-	ft_rectangle(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT / 2,
-		data->ceiling_color, data->image.background);
-	ft_rectangle(0, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT,
-		data->floor_color, data->image.background);
-	mlx_image_to_window(data->mlx, data->image.background, 0, 0);
+	set_background(data);
 	mlx_image_to_window(data->mlx, data->image._3d, 0, 0);
 	mlx_image_to_window(data->mlx, data->image.map_img,
 		WINDOW_WIDTH - MINIMAP_WIDTH, WINDOW_HEIGHT - MINIMAP_WIDTH);
@@ -127,7 +141,6 @@ void	start_mlx(t_data *data)
 	mlx_key_hook(data->mlx, key_action, data);
 	mlx_mouse_hook(data->mlx, mouse_action, data);
 	mlx_cursor_hook(data->mlx, look_mouse, data);
-
 	mlx_loop_hook(data->mlx, &update, data);
 	mlx_loop(data->mlx);
 }

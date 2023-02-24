@@ -13,7 +13,6 @@ SOURCES = 	main.c \
 			pixels/ft_rectangle.c \
 			pixels/ft_circle.c \
 			pixels/ft_line.c\
-			pixels/ft_draw_map.c \
 			parsing/data.c \
 			parsing/map_parser.c \
 			parsing/map_parser_utils.c \
@@ -31,6 +30,7 @@ SOURCES = 	main.c \
 			player/ft_movement.c \
 			raycast/ft_drawline3d.c \
 			raycast/raycast.c \
+			raycast/dda.c \
 			animate/animate.c \
 			animate/init_animate.c \
 
