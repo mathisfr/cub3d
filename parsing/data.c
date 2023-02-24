@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:51:18 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 17:42:20 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/24 14:21:56 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	free_structs(mlx_t *mlx, t_animate *anim, t_image *img, t_texture *tex)
 	mlx_delete_texture(tex->wall_n);
 	mlx_delete_texture(tex->wall_o);
 	mlx_delete_texture(tex->wall_s);
+	mlx_delete_texture(tex->door);
 }
 
 //Free data (must be updated with all mlx image maybe ?)

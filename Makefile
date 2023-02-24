@@ -8,6 +8,7 @@ HEADERS	:= -I ./include -I $(LIBMLX)/include
 
 SOURCES = 	main.c \
 			update.c \
+			key_actions.c \
 			draw_minimap.c \
 			pixels/ft_pixel_put.c \
 			pixels/ft_rectangle.c \

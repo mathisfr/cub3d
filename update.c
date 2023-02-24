@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:14:08 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 18:38:22 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:17:26 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static void	render(t_data *data, t_raycastHit hit, int x)
 	drawloop = 0;
 	while (drawloop < DOWN_SCALE)
 	{
-		drawline3d(data, x, &hit);
+		hit.x = x;
+		drawline3d(data, &hit);
 		x++;
 		drawloop++;
 	}

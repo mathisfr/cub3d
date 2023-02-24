@@ -6,7 +6,7 @@
 /*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:14:01 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/23 18:41:51 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/24 14:17:02 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_raycastHit
 	t_vector		pos;
 	float			perp_wall_dist;
 	t_side			side;
+	int				x;
 }	t_raycastHit;
 
 typedef struct s_pos

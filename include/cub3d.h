@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:14:38 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/24 09:57:24 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:01:37 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,10 @@ void			system_error(char *prompt);
 void			malloc_error(void);
 
 void			update(void *param);
+
+void			mouse_action(mouse_key_t button, action_t action,
+					modifier_key_t mods, void *param);
+void			key_action(mlx_key_data_t keydata, void *param);
+void			look_mouse(double xpos, double ypos, void *param);
 
 #endif

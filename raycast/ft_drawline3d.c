@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawline3d.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:41:15 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/24 10:17:15 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:19:59 by lloison          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@ static uint32_t	getpixelcolor(uint8_t *pixel)
 		| ((pixel[1] << 8))
 		| ((pixel[2] << 16))
 		| ((pixel[3] << 24)));
-}
-
-static int	getpixelpos(int pos, int wall_size)
-{
-	return ((pos % (int)WALL_SIZE) * ((float)wall_size / WALL_SIZE));
 }
 
 static void	cleanline(int start, int end, int x, mlx_image_t *img)
@@ -63,7 +58,7 @@ mlx_texture_t	*set_texture(t_data *data, t_raycastHit *ray, int *pos)
 	return (texture);
 }
 
-static void	drawvline(t_vector line, int x, int pos, t_data *data, t_raycastHit *ray)
+static void	drawvline(t_vector line, int pos, t_data *data, t_raycastHit *ray)
 {
 	int				wall_size;
 	float			stepy;
@@ -75,13 +70,13 @@ static void	drawvline(t_vector line, int x, int pos, t_data *data, t_raycastHit 
 	texture = set_texture(data, ray, &pos);
 	wall_size = texture->width;
 	stepy = (float)wall_size / (float)(line.y - line.x);
-	stepx = getpixelpos(pos, wall_size);
-	cleanline(0, line.x, x, data->image._3d);
+	stepx = (pos % (int)WALL_SIZE) * ((float)wall_size / WALL_SIZE);
+	cleanline(0, line.x, ray->x, data->image._3d);
 	while (line.x < line.y && y < wall_size)
 	{
 		if (line.x > 0 || line.y < (int)data->image._3d->height - 1)
 		{
-			ft_pixel_put(data->image._3d, x, line.x,
+			ft_pixel_put(data->image._3d, ray->x, line.x,
 				getpixelcolor(texture->pixels
 					+ ((((int)y) * texture->width) + (int)stepx)
 					* texture->bytes_per_pixel));
@@ -89,10 +84,10 @@ static void	drawvline(t_vector line, int x, int pos, t_data *data, t_raycastHit 
 		y += stepy;
 		line.x = line.x + 1;
 	}
-	cleanline(line.y, WINDOW_HEIGHT, x, data->image._3d);
+	cleanline(line.y, WINDOW_HEIGHT, ray->x, data->image._3d);
 }
 
-void	drawline3d(t_data *data, int x, t_raycastHit *ray)
+void	drawline3d(t_data *data, t_raycastHit *ray)
 {
 	int			lineheight;
 	t_vector	line;
@@ -102,5 +97,5 @@ void	drawline3d(t_data *data, int x, t_raycastHit *ray)
 	lineheight = (int)((float)data->image._3d->height / ray->perp_wall_dist);
 	line.x = (data->image._3d->height / 2.0) - (lineheight / 2.0);
 	line.y = (data->image._3d->height / 2.0) + (lineheight / 2.0);
-	drawvline(line, x, pos, data, ray);
+	drawvline(line, pos, data, ray);
 }
