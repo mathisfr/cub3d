@@ -6,10 +6,10 @@ CC = gcc
 LIBFT = libft/libft_enhanced.a
 HEADERS	:= -I ./include -I $(LIBMLX)/include
 
-SOURCES = 	main.c \
-			update.c \
-			key_actions.c \
-			draw_minimap.c \
+SOURCES = 	main/main.c \
+			main/update.c \
+			player/key_actions.c \
+			raycast/draw_minimap.c \
 			pixels/ft_pixel_put.c \
 			pixels/ft_rectangle.c \
 			pixels/ft_circle.c \
@@ -23,8 +23,8 @@ SOURCES = 	main.c \
 			parsing/parse_fc_color.c \
 			parsing/parse_texture_and_color.c \
 			parsing/parse_texture.c \
-			vector.c \
-			vector2.c \
+			vector/vector.c \
+			vector/vector2.c \
 			player/player.c \
 			player/player_collider.c \
 			player/player_collider2.c \
