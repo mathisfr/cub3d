@@ -28,6 +28,7 @@ SOURCES = 	main/main.c \
 			player/player.c \
 			player/player_collider.c \
 			player/player_collider2.c \
+			player/player_collider3.c \
 			player/ft_movement.c \
 			raycast/ft_drawline3d.c \
 			raycast/raycast.c \

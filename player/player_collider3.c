@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser_utils.h                                 :+:      :+:    :+:   */
+/*   player_collider3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:48:04 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/13 17:36:27 by matfranc         ###   ########.fr       */
+/*   Created: 2023/02/25 14:04:32 by lloison           #+#    #+#             */
+/*   Updated: 2023/02/25 14:30:28 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_PARSER_UTILS_H
-# define MAP_PARSER_UTILS_H
-# include "cub3d.h"
+#include "cub3d.h"
 
-void	set_map_size(t_map *map, t_list *map_lines);
-char	*copy_and_fill(char *line, int size);
-void	check_line(char *line);
-void	remove_endl(char *line);
-void	check_extension(char *line);
+t_bool	is_in_collider(t_data *data, t_pos tpos)
+{
+	t_list	*curr_tile;
+	t_pos	*pos;
 
-#endif
+	curr_tile = data->player->collider.all_tiles;
+	while (curr_tile)
+	{
+		pos = (t_pos *)curr_tile->content;
+		if (pos->x == tpos.x && pos->y == tpos.y)
+			return (TRUE);
+		curr_tile = curr_tile->next;
+	}
+	return (FALSE);
+}

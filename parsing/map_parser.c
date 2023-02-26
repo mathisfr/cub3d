@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:29:27 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/21 16:45:17 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/25 15:02:22 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@ static t_list	*get_data(int fd)
 	t_list	*map_lines;
 	char	*tmp_line;
 	void	*tmp_node;
+	int		i;
 
 	map_lines = 0;
 	tmp_line = get_next_line(fd);
 	if (tmp_line == 0)
 		parsing_error("file empty or malloc error");
+	i = 1;
 	while (tmp_line)
 	{
+		if (ft_strlen(tmp_line) > 100 || i > 50)
+			parsing_error("map is too big");
 		check_line(tmp_line);
 		remove_endl(tmp_line);
 		tmp_node = ft_lstnew(tmp_line);
@@ -33,6 +37,7 @@ static t_list	*get_data(int fd)
 			malloc_error();
 		ft_lstadd_back(&map_lines, tmp_node);
 		tmp_line = get_next_line(fd);
+		i++;
 	}
 	return (map_lines);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:14:38 by matfranc          #+#    #+#             */
-/*   Updated: 2023/02/24 15:51:53 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/25 14:33:05 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ void			mouse_action(mouse_key_t button, action_t action,
 					modifier_key_t mods, void *param);
 void			key_action(mlx_key_data_t keydata, void *param);
 void			look_mouse(double xpos, double ypos, void *param);
+
+t_bool			is_in_collider(t_data *data, t_pos tpos);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_actions.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloison < lloison@student.42mulhouse.fr    +#+  +:+       +#+        */
+/*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:00:38 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/24 14:07:14 by lloison          ###   ########.fr       */
+/*   Updated: 2023/02/25 14:31:31 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,39 @@ void	look_mouse(double xpos, double ypos, void *param)
 	}
 }
 
-static char	*get_front_tile(t_data *data)
+static char	*get_front_tile(t_data *data, t_pos	*tpos)
 {
 	t_pos	pl_pos;
 
 	pl_pos = data->player->tile_pos;
 	if (data->player->angle > 315 || data->player->angle <= 45)
+	{
+		*tpos = pos(pl_pos.x, pl_pos.y - 1);
 		return (&data->map->map_arr[pl_pos.y - 1][pl_pos.x]);
+	}
 	if (data->player->angle > 45 && data->player->angle <= 135)
+	{
+		*tpos = pos(pl_pos.x + 1, pl_pos.y);
 		return (&data->map->map_arr[pl_pos.y][pl_pos.x + 1]);
+	}
 	if (data->player->angle > 135 && data->player->angle <= 225)
+	{
+		*tpos = pos(pl_pos.x, pl_pos.y + 1);
 		return (&data->map->map_arr[pl_pos.y + 1][pl_pos.x]);
+	}
+	*tpos = pos(pl_pos.x - 1, pl_pos.y);
 	return (&data->map->map_arr[pl_pos.y][pl_pos.x - 1]);
 }
 
 void	doors_manager(char door, char state, t_data *data)
 {
 	char	*front_tile;
+	t_pos	tile_pos;
 
-	front_tile = get_front_tile(data);
-	if (*front_tile == door)
+	front_tile = get_front_tile(data, &tile_pos);
+	if (*front_tile == door && !is_in_collider(data, tile_pos))
 		*front_tile = state;
-	else if (*front_tile == state)
+	else if (*front_tile == state && !is_in_collider(data, tile_pos))
 		*front_tile = door;
 }
 

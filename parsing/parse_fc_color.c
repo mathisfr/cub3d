@@ -6,7 +6,7 @@
 /*   By: matfranc <matfranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:00 by lloison           #+#    #+#             */
-/*   Updated: 2023/02/24 10:04:45 by matfranc         ###   ########.fr       */
+/*   Updated: 2023/02/25 14:32:24 by matfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,30 @@ static t_bool	is_space(char c)
 		&& c != '\r' && c != ' ')
 		return (FALSE);
 	return (TRUE);
+}
+
+static void	check_if_valid_line2(char *line, int i, int j)
+{
+	while (j < 3)
+	{
+		while (is_space(line[i]))
+			i++;
+		if (!ft_isdigit(line[i]))
+			parsing_error("Wrong format in ceiling/floor color");
+		while (ft_isdigit(line[i]))
+			i++;
+		while (is_space(line[i]))
+			i++;
+		if (j != 2 && line[i] != ',')
+			parsing_error("Wrong format in ceiling/floor color");
+		if (j < 2 && line[i] == ',')
+			i++;
+		j++;
+	}
+	while (is_space(line[i]))
+		i++;
+	if (line[i])
+		parsing_error("Too many information in ceiling/floor line");
 }
 
 static void	check_if_valid_line(t_data *data, char *line)
@@ -32,21 +56,7 @@ static void	check_if_valid_line(t_data *data, char *line)
 	if (!is_space(line[i]))
 		parsing_error("Wrong format in ceiling/floor color");
 	j = 0;
-	while (j < 3)
-	{
-		while (is_space(line[i]))
-			i++;
-		if (!ft_isdigit(line[i]))
-			parsing_error("Wrong format in ceiling/floor color");
-		while (ft_isdigit(line[i]))
-			i++;
-		while (is_space(line[i]))
-			i++;
-		if (j != 2 && line[i] != ',')
-			parsing_error("Wrong format in ceiling/floor color");
-		i++;
-		j++;
-	}
+	check_if_valid_line2(line, i, j);
 }
 
 static void	skip_number(char *line, int *i)
